@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,13 @@ namespace ForestResourceManagement
 {
     public partial class MainUI : Form
     {
+        private FrdbContext _dbContext;
         public MainUI()
         {
             InitializeComponent();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            _dbContext = new FrdbContext();
 
         }
+
     }
 }
