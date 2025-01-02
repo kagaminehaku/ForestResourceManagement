@@ -14,7 +14,7 @@ namespace ForestResourceManagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var mainuiform = new MainUI();
+            var mainuiform = new MainUI("admin");
             mainuiform.FormClosed += (s, args) => this.Show();
             mainuiform.Show();
             this.Hide();

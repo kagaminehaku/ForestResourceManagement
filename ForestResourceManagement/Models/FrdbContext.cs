@@ -19,6 +19,8 @@ public partial class FrdbContext : DbContext
 
     public virtual DbSet<HuyenTable> HuyenTables { get; set; }
 
+    public virtual DbSet<InstructionTable> InstructionTables { get; set; }
+
     public virtual DbSet<LogTable> LogTables { get; set; }
 
     public virtual DbSet<RoleGroupAccess> RoleGroupAccesses { get; set; }
@@ -59,6 +61,17 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.TenHuyen).HasMaxLength(256);
         });
 
+        modelBuilder.Entity<InstructionTable>(entity =>
+        {
+            entity.HasKey(e => e.InstructionId).HasName("PK_Instructiontable");
+
+            entity.ToTable("InstructionTable");
+
+            entity.Property(e => e.InstructionId).HasColumnName("InstructionID");
+            entity.Property(e => e.InstructionContent).HasColumnType("text");
+            entity.Property(e => e.InstructionName).HasMaxLength(256);
+        });
+
         modelBuilder.Entity<LogTable>(entity =>
         {
             entity.HasKey(e => e.LogId);
@@ -69,7 +82,6 @@ public partial class FrdbContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("LogID");
             entity.Property(e => e.LogEvent).HasColumnType("text");
-            entity.Property(e => e.LogIndex).ValueGeneratedOnAdd();
             entity.Property(e => e.LogType).HasMaxLength(256);
         });
 

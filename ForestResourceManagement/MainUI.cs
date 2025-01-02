@@ -4,50 +4,89 @@ using System.Linq;
 using System.Windows.Forms;
 using ForestResourceManagement.Models;
 using ForestResourceManagement.MixForm;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ForestResourceManagement.Controllers;
 
 namespace ForestResourceManagement
 {
     public partial class MainUI : Form
     {
         private FrdbContext _dbContext;
-
-        public MainUI()
+        private BindingSource _bindingSource;
+        private BindingSource _bindingSource2;
+        private BindingSource _bindingSourceLog;
+        private string username;
+        private ForestControllerUserAccounts _controllerUserAccounts;
+        public MainUI(string usn)
         {
             InitializeComponent();
             _dbContext = new FrdbContext();
-
-            // Load data into controls on form load
+            _controllerUserAccounts = new ForestControllerUserAccounts(_dbContext);
+            username = usn;
             LoadHuyenList();
+            LoadLogList();
 
-            // Attach event handlers
-            DanhSachHuyen.SelectedIndexChanged += DanhSachHuyen_SelectedIndexChanged;
+            //DanhSachHuyen.SelectedIndexChanged += DanhSachHuyen_SelectedIndexChanged;
         }
 
-        // Load Huyen list into ComboBox
         private void LoadHuyenList()
         {
-            //DanhSachHuyen.Items.Clear();
-            DanhSachHuyen.DataSource = null;
-            DanhSachHuyen.DataSource = _dbContext.HuyenTables.ToList();
-            DanhSachHuyen.DisplayMember = "TenHuyen"; // Assuming the Huyen entity has a "TenHuyen" property
-            DanhSachHuyen.ValueMember = "HuyenId";        // Assuming the Huyen entity has an "Id" property
+            if (_bindingSource2 == null)
+            {
+                _bindingSource2 = new BindingSource();
+            }
+
+            var huyenList = _dbContext.HuyenTables.ToList();
+
+            _bindingSource2.DataSource = huyenList;
+
+            DanhSachHuyenDGV.DataSource = _bindingSource2;
+
+            DanhSachHuyen.DataSource = huyenList;
+            DanhSachHuyen.DisplayMember = "TenHuyen";
+            DanhSachHuyen.ValueMember = "HuyenId";
             DanhSachHuyen.SelectedIndex = -1;
+            _controllerUserAccounts.LogAction(username, "Load Danh Sach Huyen");
         }
 
-        // Load Xa list into DataGridView based on selected Huyen
+        private void LoadLogList()
+        {
+            if (_bindingSourceLog == null)
+            {
+                _bindingSourceLog = new BindingSource();
+            }
+
+            var loglist = _dbContext.LogTables.ToList();
+            _bindingSourceLog.DataSource = null;
+            _bindingSourceLog.DataSource = loglist;
+            DanhSachLog.DataSource = null;
+            DanhSachLog.DataSource = _bindingSourceLog;
+
+            _controllerUserAccounts.LogAction(username, "Load Danh Sach Log");
+
+
+        }
+
         private void LoadXaList(int huyenId)
         {
-            DanhSachXa.DataSource = null;
+            _controllerUserAccounts.LogAction(username, "Load Danh Sach Xa");
             var xaList = _dbContext.XaTables.Where(x => x.HuyenId == huyenId).ToList();
-            DanhSachXa.DataSource = xaList;
+
+            if (_bindingSource == null)
+            {
+                _bindingSource = new BindingSource();
+                DanhSachXa.DataSource = _bindingSource;
+            }
+
+            _bindingSource.DataSource = xaList;
         }
+
 
         private void ClearXaList()
         {
             DanhSachXa.DataSource = null;
         }
 
-        // Event: Huyen selection changed
         private void DanhSachHuyen_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DanhSachHuyen.SelectedValue is int selectedHuyenId)
@@ -56,7 +95,6 @@ namespace ForestResourceManagement
             }
         }
 
-        // Add a new Huyen
         private void ThemHuyen_Click(object sender, EventArgs e)
         {
             using (var form = new HuyenForm())
@@ -66,23 +104,24 @@ namespace ForestResourceManagement
                     var newHuyen = form.Huyen;
                     _dbContext.HuyenTables.Add(newHuyen);
                     _dbContext.SaveChanges();
+                    _controllerUserAccounts.LogAction(username, $"Them Huyen{newHuyen.TenHuyen}");
                     LoadHuyenList();
                 }
             }
         }
 
-        // Edit the selected Huyen
         private void SuaHuyen_Click(object sender, EventArgs e)
         {
-            if (DanhSachHuyen.SelectedValue is int selectedHuyenId)
+            if (DanhSachHuyenDGV.SelectedRows.Count > 0)
             {
-                var huyen = _dbContext.HuyenTables.Find(selectedHuyenId);
-                if (huyen != null)
+                var selectedHuyen = DanhSachHuyenDGV.SelectedRows[0].DataBoundItem as HuyenTable;
+                if (selectedHuyen != null)
                 {
-                    using (var form = new HuyenForm(huyen))
+                    using (var form = new HuyenForm(selectedHuyen))
                     {
                         if (form.ShowDialog() == DialogResult.OK)
                         {
+                            _controllerUserAccounts.LogAction(username, $"Sua Huyen{selectedHuyen.HuyenId}");
                             _dbContext.SaveChanges();
                             LoadHuyenList();
                         }
@@ -91,19 +130,20 @@ namespace ForestResourceManagement
             }
         }
 
-        // Delete the selected Huyen
+
         private void XoaHuyen_Click(object sender, EventArgs e)
         {
-            if (DanhSachHuyen.SelectedValue is int selectedHuyenId)
+            if (DanhSachHuyenDGV.SelectedRows.Count > 0)
             {
-                var huyen = _dbContext.HuyenTables.Find(selectedHuyenId);
-                if (huyen != null && 
+                var selectedHuyen = DanhSachHuyenDGV.SelectedRows[0].DataBoundItem as HuyenTable;
+                if (selectedHuyen != null &&
                     MessageBox.Show("Bạn có chắc chắn muốn xoá huyện này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var xas = _dbContext.XaTables.Where(x => x.HuyenId == selectedHuyenId).ToList();
+                    var xas = _dbContext.XaTables.Where(x => x.HuyenId == selectedHuyen.HuyenId).ToList();
                     _dbContext.XaTables.RemoveRange(xas);
 
-                    _dbContext.HuyenTables.Remove(huyen);
+                    _dbContext.HuyenTables.Remove(selectedHuyen);
+                    _controllerUserAccounts.LogAction(username, $"Xoa Huyen{selectedHuyen.TenHuyen}");
                     _dbContext.SaveChanges();
                     LoadHuyenList();
                     ClearXaList();
@@ -111,7 +151,7 @@ namespace ForestResourceManagement
             }
         }
 
-        // Add a new Xa
+
         private void ThemXa_Click(object sender, EventArgs e)
         {
             if (DanhSachHuyen.SelectedValue is int selectedHuyenId)
@@ -124,13 +164,13 @@ namespace ForestResourceManagement
                         newXa.HuyenId = selectedHuyenId;
                         _dbContext.XaTables.Add(newXa);
                         _dbContext.SaveChanges();
+                        _controllerUserAccounts.LogAction(username, $"Them Xa{newXa.TenXa}");
                         LoadXaList(selectedHuyenId);
                     }
                 }
             }
         }
 
-        // Edit the selected Xa
         private void SuaXa_Click(object sender, EventArgs e)
         {
             if (DanhSachXa.SelectedRows.Count > 0)
@@ -143,6 +183,7 @@ namespace ForestResourceManagement
                         if (form.ShowDialog() == DialogResult.OK)
                         {
                             _dbContext.SaveChanges();
+                            _controllerUserAccounts.LogAction(username, $"Sua Xa{selectedXa.XaId}");
                             LoadXaList(selectedXa.HuyenId);
                             LoadHuyenList();
                         }
@@ -151,19 +192,111 @@ namespace ForestResourceManagement
             }
         }
 
-        // Delete the selected Xa
         private void XoaXa_Click(object sender, EventArgs e)
         {
             if (DanhSachXa.SelectedRows.Count > 0)
             {
                 var selectedXa = DanhSachXa.SelectedRows[0].DataBoundItem as XaTable;
-                if (selectedXa != null && 
+                if (selectedXa != null &&
                     MessageBox.Show("Bạn có chắc chắn muốn xoá xã này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     _dbContext.XaTables.Remove(selectedXa);
                     _dbContext.SaveChanges();
+                    _controllerUserAccounts.LogAction(username, $"Xoa xa{selectedXa.XaId}");
                     LoadXaList(selectedXa.HuyenId);
                 }
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (_bindingSource == null)
+            {
+                return;
+            }
+            string searchText = textBox2.Text.Trim();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var filteredList = _dbContext.XaTables
+                    .AsEnumerable()
+                    .Where(x => x.TenXa.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                _bindingSource.DataSource = filteredList;
+            }
+            else
+            {
+                if (DanhSachHuyen.SelectedValue is int selectedHuyenId)
+                {
+                    LoadXaList(selectedHuyenId);
+                }
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (_bindingSource == null)
+            {
+                return;
+            }
+
+            string searchText = textBox3.Text.Trim();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var filteredList = _dbContext.HuyenTables
+                    .AsEnumerable()
+                    .Where(h => h.TenHuyen.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                _bindingSource2.DataSource = filteredList;
+                DanhSachHuyenDGV.DataSource = _bindingSource2;
+            }
+            else
+            {
+                _bindingSource2.DataSource = _dbContext.HuyenTables.ToList();
+                DanhSachHuyenDGV.DataSource = _bindingSource2;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadLogList();
+        }
+
+        private void DanhSachLog_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DanhSachLog.SelectedRows.Count > 0)
+            {
+                var selectedlog = DanhSachLog.SelectedRows[0].DataBoundItem as LogTable;
+                if (selectedlog != null)
+                {
+                    richTextBox1.Text = selectedlog.LogEvent;
+                    richTextBox2.Text = selectedlog.LogType;
+                }
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (_bindingSourceLog == null)
+            {
+                return;
+            }
+
+            string searchText = textBox1.Text.Trim();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var filteredList = _dbContext.LogTables
+                    .AsEnumerable()
+                    .Where(h => h.LogEvent.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                _bindingSourceLog.DataSource = filteredList;
+                DanhSachLog.DataSource = _bindingSourceLog;
+            }
+            else
+            {
+                _bindingSourceLog.DataSource = _dbContext.LogTables.ToList();
+                DanhSachLog.DataSource = _bindingSourceLog;
             }
         }
     }
