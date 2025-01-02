@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ForestResourceManagement;
+namespace ForestResourceManagement.Models;
 
 public partial class FrdbContext : DbContext
 {
@@ -17,6 +17,8 @@ public partial class FrdbContext : DbContext
 
     public virtual DbSet<AccessTable> AccessTables { get; set; }
 
+    public virtual DbSet<HuyenTable> HuyenTables { get; set; }
+
     public virtual DbSet<LogTable> LogTables { get; set; }
 
     public virtual DbSet<RoleGroupAccess> RoleGroupAccesses { get; set; }
@@ -25,9 +27,11 @@ public partial class FrdbContext : DbContext
 
     public virtual DbSet<UserAccount> UserAccounts { get; set; }
 
+    public virtual DbSet<XaTable> XaTables { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=miracleland.ddns.net,25564;Database=FRDB;user id=sa;password=17102003;trust server certificate=true");
+        => optionsBuilder.UseSqlServer("Server=kagaminehaku.softether.net,25564;Database=FRDB;user id=sa;password=17102003;trust server certificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,6 +46,17 @@ public partial class FrdbContext : DbContext
                 .HasColumnName("AcessID");
             entity.Property(e => e.AccessInfo).HasColumnType("text");
             entity.Property(e => e.AccessName).HasMaxLength(64);
+        });
+
+        modelBuilder.Entity<HuyenTable>(entity =>
+        {
+            entity.HasKey(e => e.HuyenId);
+
+            entity.ToTable("HuyenTable");
+
+            entity.Property(e => e.HuyenId).HasColumnName("HuyenID");
+            entity.Property(e => e.Info).HasColumnType("text");
+            entity.Property(e => e.TenHuyen).HasMaxLength(256);
         });
 
         modelBuilder.Entity<LogTable>(entity =>
@@ -107,6 +122,23 @@ public partial class FrdbContext : DbContext
             entity.HasOne(d => d.RoleGroup).WithMany(p => p.UserAccounts)
                 .HasForeignKey(d => d.RoleGroupId)
                 .HasConstraintName("FK_UserAccounts_RoleGroupTable");
+        });
+
+        modelBuilder.Entity<XaTable>(entity =>
+        {
+            entity.HasKey(e => e.XaId);
+
+            entity.ToTable("XaTable");
+
+            entity.Property(e => e.XaId).HasColumnName("XaID");
+            entity.Property(e => e.HuyenId).HasColumnName("HuyenID");
+            entity.Property(e => e.Info).HasColumnType("text");
+            entity.Property(e => e.TenXa).HasMaxLength(256);
+
+            entity.HasOne(d => d.Huyen).WithMany(p => p.XaTables)
+                .HasForeignKey(d => d.HuyenId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_XaTable_HuyenTable");
         });
 
         OnModelCreatingPartial(modelBuilder);

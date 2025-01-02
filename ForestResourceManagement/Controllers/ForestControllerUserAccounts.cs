@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using ForestResourceManagement.Models;
 
 namespace ForestResourceManagement.Controllers
 {
@@ -15,7 +16,7 @@ namespace ForestResourceManagement.Controllers
         }
 
         // Helper to log actions
-        private void LogAction(string username, string action)
+        public void LogAction(string username, string action)
         {
             _context.LogTables.Add(new LogTable
             {
