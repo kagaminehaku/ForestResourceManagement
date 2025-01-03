@@ -52,12 +52,16 @@ namespace ForestResourceManagement
             tabPage4 = new TabPage();
             tabPage5 = new TabPage();
             tabPage6 = new TabPage();
+            groupBox5 = new GroupBox();
+            richTextBox4 = new RichTextBox();
+            comboBox1 = new ComboBox();
+            button3 = new Button();
             groupBox3 = new GroupBox();
+            richTextBox3 = new RichTextBox();
             button2 = new Button();
+            textBox4 = new TextBox();
             label4 = new Label();
             label3 = new Label();
-            textBox4 = new TextBox();
-            richTextBox3 = new RichTextBox();
             tabPage7 = new TabPage();
             dataGridView2 = new DataGridView();
             tabPage8 = new TabPage();
@@ -72,10 +76,6 @@ namespace ForestResourceManagement
             logEventDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             richTextBox1 = new RichTextBox();
             logTableBindingSource1 = new BindingSource(components);
-            groupBox5 = new GroupBox();
-            button3 = new Button();
-            comboBox1 = new ComboBox();
-            richTextBox4 = new RichTextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -83,13 +83,13 @@ namespace ForestResourceManagement
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachXa).BeginInit();
             tabPage6.SuspendLayout();
+            groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
             tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachLog).BeginInit();
             ((System.ComponentModel.ISupportInitialize)logTableBindingSource1).BeginInit();
-            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -339,6 +339,45 @@ namespace ForestResourceManagement
             tabPage6.Text = "Instruction";
             tabPage6.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(richTextBox4);
+            groupBox5.Controls.Add(comboBox1);
+            groupBox5.Controls.Add(button3);
+            groupBox5.Location = new Point(22, 245);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(534, 197);
+            groupBox5.TabIndex = 7;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Xem hướng dẫn";
+            // 
+            // richTextBox4
+            // 
+            richTextBox4.Location = new Point(7, 80);
+            richTextBox4.Name = "richTextBox4";
+            richTextBox4.Size = new Size(316, 96);
+            richTextBox4.TabIndex = 2;
+            richTextBox4.Text = "";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(7, 34);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(316, 23);
+            comboBox1.TabIndex = 1;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(371, 57);
+            button3.Name = "button3";
+            button3.Size = new Size(105, 67);
+            button3.TabIndex = 0;
+            button3.Text = "Xoá Hướng Dẫn";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // groupBox3
             // 
             groupBox3.Controls.Add(richTextBox3);
@@ -353,6 +392,14 @@ namespace ForestResourceManagement
             groupBox3.TabStop = false;
             groupBox3.Text = "Thêm Hướng Dẫn";
             // 
+            // richTextBox3
+            // 
+            richTextBox3.Location = new Point(6, 82);
+            richTextBox3.Name = "richTextBox3";
+            richTextBox3.Size = new Size(324, 96);
+            richTextBox3.TabIndex = 0;
+            richTextBox3.Text = "";
+            // 
             // button2
             // 
             button2.Location = new Point(371, 59);
@@ -361,6 +408,14 @@ namespace ForestResourceManagement
             button2.TabIndex = 4;
             button2.Text = "Thêm Hướng Dẫn";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(7, 33);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(323, 23);
+            textBox4.TabIndex = 1;
             // 
             // label4
             // 
@@ -379,21 +434,6 @@ namespace ForestResourceManagement
             label3.Size = new Size(106, 15);
             label3.TabIndex = 2;
             label3.Text = "Tiêu đề hướng dẫn";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(7, 33);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(323, 23);
-            textBox4.TabIndex = 1;
-            // 
-            // richTextBox3
-            // 
-            richTextBox3.Location = new Point(6, 82);
-            richTextBox3.Name = "richTextBox3";
-            richTextBox3.Size = new Size(324, 96);
-            richTextBox3.TabIndex = 0;
-            richTextBox3.Text = "";
             // 
             // tabPage7
             // 
@@ -533,43 +573,6 @@ namespace ForestResourceManagement
             // 
             logTableBindingSource1.DataSource = typeof(LogTable);
             // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(richTextBox4);
-            groupBox5.Controls.Add(comboBox1);
-            groupBox5.Controls.Add(button3);
-            groupBox5.Location = new Point(22, 245);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(534, 197);
-            groupBox5.TabIndex = 7;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "Xem hướng dẫn";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(371, 57);
-            button3.Name = "button3";
-            button3.Size = new Size(105, 67);
-            button3.TabIndex = 0;
-            button3.Text = "Xoá Hướng Dẫn";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(7, 34);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(316, 23);
-            comboBox1.TabIndex = 1;
-            // 
-            // richTextBox4
-            // 
-            richTextBox4.Location = new Point(7, 80);
-            richTextBox4.Name = "richTextBox4";
-            richTextBox4.Size = new Size(316, 96);
-            richTextBox4.TabIndex = 2;
-            richTextBox4.Text = "";
-            // 
             // MainUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -588,6 +591,7 @@ namespace ForestResourceManagement
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachXa).EndInit();
             tabPage6.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             tabPage7.ResumeLayout(false);
@@ -596,7 +600,6 @@ namespace ForestResourceManagement
             tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachLog).EndInit();
             ((System.ComponentModel.ISupportInitialize)logTableBindingSource1).EndInit();
-            groupBox5.ResumeLayout(false);
             ResumeLayout(false);
         }
 

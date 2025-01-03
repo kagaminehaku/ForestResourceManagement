@@ -25,8 +25,19 @@ namespace ForestResourceManagement
             username = usn;
             LoadHuyenList();
             LoadLogList();
+            LoadInsList();
 
             //DanhSachHuyen.SelectedIndexChanged += DanhSachHuyen_SelectedIndexChanged;
+        }
+
+        private void LoadInsList()
+        {
+            comboBox1.DataSource = null ;
+            comboBox1.DataSource= _dbContext.InstructionTables.ToList();
+            comboBox1.DisplayMember = "InstructionName";
+            comboBox1.ValueMember = "InstructionId";
+            comboBox1.SelectedIndex = -1;
+            _controllerUserAccounts.LogAction(username, "Load Danh Sach Huong Dan");
         }
 
         private void LoadHuyenList()
@@ -297,6 +308,44 @@ namespace ForestResourceManagement
             {
                 _bindingSourceLog.DataSource = _dbContext.LogTables.ToList();
                 DanhSachLog.DataSource = _bindingSourceLog;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox4.Text != null && richTextBox4.Text != null)
+            {
+                var newins = new InstructionTable();
+                newins.InstructionName = textBox4.Text;
+                newins.InstructionContent = richTextBox3.Text;
+                _dbContext.InstructionTables.Add(newins);
+                _dbContext.SaveChanges();
+                textBox4.Text = string.Empty;
+                richTextBox3.Text = string.Empty;
+                LoadInsList();
+                _controllerUserAccounts.LogAction(username, $"Add instruction{newins.InstructionName}");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedValue is int selectinsid)
+            {
+                MessageBox.Show("Bạn có chắc chắn muốn xoá huong dan này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    var delins = _dbContext.InstructionTables.Find(selectinsid);
+                    _dbContext.InstructionTables.Remove(delins);
+                    _dbContext.SaveChanges();
+                    _controllerUserAccounts.LogAction(username, $"Delete instruction{delins.InstructionName}");
+                }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedValue is int selectinsid)
+            {
+                var item = _dbContext.InstructionTables.Find(selectinsid);
+                richTextBox4.Text = item.InstructionContent;
             }
         }
     }
