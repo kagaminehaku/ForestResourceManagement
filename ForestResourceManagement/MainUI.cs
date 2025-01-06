@@ -2,7 +2,6 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using ForestResourceManagement.Models;
 using ForestResourceManagement.MixForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ForestResourceManagement.Controllers;
@@ -17,12 +16,12 @@ namespace ForestResourceManagement
         private BindingSource _bindingSourceLog;
         private string username;
         private ForestControllerUserAccounts _controllerUserAccounts;
-        public MainUI(string usn)
+        public MainUI(UserAccount usn)
         {
             InitializeComponent();
             _dbContext = new FrdbContext();
             _controllerUserAccounts = new ForestControllerUserAccounts(_dbContext);
-            username = usn;
+            username = usn.Username;
             LoadHuyenList();
             LoadLogList();
             LoadInsList();
@@ -331,15 +330,17 @@ namespace ForestResourceManagement
         {
             if (comboBox1.SelectedValue is int selectinsid)
             {
-                MessageBox.Show("Bạn có chắc chắn muốn xoá huong dan này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+               if (MessageBox.Show("Bạn có chắc chắn muốn xoá huong dan này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes && selectinsid != null)
                 {
                     var delins = _dbContext.InstructionTables.Find(selectinsid);
                     _dbContext.InstructionTables.Remove(delins);
                     _dbContext.SaveChanges();
                     _controllerUserAccounts.LogAction(username, $"Delete instruction{delins.InstructionName}");
+                    LoadInsList();
                 }
-        }
+            }
 
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedValue is int selectinsid)

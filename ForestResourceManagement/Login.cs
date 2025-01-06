@@ -20,5 +20,10 @@ namespace ForestResourceManagement
             this.Hide();
 
         }
+
+        private void GoLogin()
+        {
+
+        }
     }
 }

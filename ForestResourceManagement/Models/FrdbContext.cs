@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class FrdbContext : DbContext
 {
@@ -99,11 +99,6 @@ public partial class FrdbContext : DbContext
                 .HasForeignKey(d => d.AccessId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_RoleGroupAccess_AccessTable");
-
-            entity.HasOne(d => d.RoleGroup).WithMany()
-                .HasForeignKey(d => d.RoleGroupId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_RoleGroupAccess_RoleGroupTable");
         });
 
         modelBuilder.Entity<RoleGroupTable>(entity =>
@@ -121,19 +116,14 @@ public partial class FrdbContext : DbContext
 
         modelBuilder.Entity<UserAccount>(entity =>
         {
-            entity.HasKey(e => e.Uid);
+            entity.HasKey(e => e.Uid).HasName("PK_UserAccounts_1");
 
-            entity.Property(e => e.Uid).ValueGeneratedNever();
             entity.Property(e => e.Email).HasMaxLength(64);
             entity.Property(e => e.Info).HasColumnType("text");
             entity.Property(e => e.Password).HasMaxLength(256);
             entity.Property(e => e.Phone).HasMaxLength(16);
             entity.Property(e => e.RoleGroupId).HasColumnName("RoleGroupID");
             entity.Property(e => e.Username).HasMaxLength(128);
-
-            entity.HasOne(d => d.RoleGroup).WithMany(p => p.UserAccounts)
-                .HasForeignKey(d => d.RoleGroupId)
-                .HasConstraintName("FK_UserAccounts_RoleGroupTable");
         });
 
         modelBuilder.Entity<XaTable>(entity =>

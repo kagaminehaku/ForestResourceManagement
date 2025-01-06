@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class RoleGroupAccess
 {
@@ -12,6 +12,4 @@ public partial class RoleGroupAccess
     public int AccessId { get; set; }
 
     public virtual AccessTable Access { get; set; } = null!;
-
-    public virtual RoleGroupTable RoleGroup { get; set; } = null!;
 }

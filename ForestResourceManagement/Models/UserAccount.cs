@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class UserAccount
 {
-    public Guid Uid { get; set; }
+    public int Uid { get; set; }
 
     public string Username { get; set; } = null!;
 
@@ -22,6 +22,4 @@ public partial class UserAccount
     public bool IsForgotPassword { get; set; }
 
     public Guid? RoleGroupId { get; set; }
-
-    public virtual RoleGroupTable? RoleGroup { get; set; }
 }

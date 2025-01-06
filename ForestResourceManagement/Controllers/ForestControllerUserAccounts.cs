@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ForestResourceManagement.Models;
 
 namespace ForestResourceManagement.Controllers
 {
@@ -76,12 +75,13 @@ namespace ForestResourceManagement.Controllers
         // User Account Management
         public UserAccount? Login(string username, string password)
         {
+            password = LogsController.HashingPassword(password);
             var user = _context.UserAccounts.FirstOrDefault(u => u.Username == username && u.Password == password);
             LogAction(username, "User login attempt");
             return user;
         }
 
-        public UserAccount? GetUserDetails(Guid userId, string username)
+        public UserAccount? GetUserDetails(int userId, string username)
         {
             LogAction(username, "Retrieve user details");
             return _context.UserAccounts.FirstOrDefault(u => u.Uid == userId);
@@ -94,7 +94,7 @@ namespace ForestResourceManagement.Controllers
             LogAction(username, "Update user details");
         }
 
-        public void ReportForgotPassword(Guid userId, string username)
+        public void ReportForgotPassword(int userId, string username)
         {
             var user = _context.UserAccounts.FirstOrDefault(u => u.Uid == userId);
             if (user != null)
@@ -105,7 +105,7 @@ namespace ForestResourceManagement.Controllers
             }
         }
 
-        public void BanUser(Guid userId, string username)
+        public void BanUser(int userId, string username)
         {
             var user = _context.UserAccounts.FirstOrDefault(u => u.Uid == userId);
             if (user != null)
@@ -116,7 +116,7 @@ namespace ForestResourceManagement.Controllers
             }
         }
 
-        public void AssignRoleGroup(Guid userId, Guid roleGroupId, string username)
+        public void AssignRoleGroup(int userId, Guid roleGroupId, string username)
         {
             var user = _context.UserAccounts.FirstOrDefault(u => u.Uid == userId);
             if (user != null)
