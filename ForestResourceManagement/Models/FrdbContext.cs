@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class FrdbContext : DbContext
 {
@@ -71,9 +71,7 @@ public partial class FrdbContext : DbContext
         {
             entity.ToTable("DongVat");
 
-            entity.Property(e => e.DongVatId)
-                .ValueGeneratedNever()
-                .HasColumnName("DongVatID");
+            entity.Property(e => e.DongVatId).HasColumnName("DongVatID");
             entity.Property(e => e.TenDongVat).HasMaxLength(256);
         });
 

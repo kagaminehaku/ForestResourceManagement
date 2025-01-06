@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class AccessTable
 {
