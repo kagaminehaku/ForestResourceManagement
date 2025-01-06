@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ForestResourceManagement.Controllers
 {
-    public class LogsController
+    public class Hash
     {
         public static string HashingPassword(string input)
         {

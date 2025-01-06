@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
+using ForestResourceManagement.Models;
 
 namespace ForestResourceManagement.Controllers
 {
@@ -75,9 +76,17 @@ namespace ForestResourceManagement.Controllers
         // User Account Management
         public UserAccount? Login(string username, string password)
         {
-            password = LogsController.HashingPassword(password);
+            password = Hash.HashingPassword(password);
             var user = _context.UserAccounts.FirstOrDefault(u => u.Username == username && u.Password == password);
             LogAction(username, "User login attempt");
+            if (user == null)
+            {
+                return user;
+            }
+            if (user.IsActive == false)
+            {
+                user.Password = "reset";
+            }
             return user;
         }
 

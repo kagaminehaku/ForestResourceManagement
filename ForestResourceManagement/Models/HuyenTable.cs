@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForestResourceManagement;
+namespace ForestResourceManagement.Models;
 
 public partial class HuyenTable
 {

@@ -5,17 +5,18 @@ using System.Windows.Forms;
 using ForestResourceManagement.MixForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ForestResourceManagement.Controllers;
+using ForestResourceManagement.Models;
 
 namespace ForestResourceManagement
 {
     public partial class MainUI : Form
     {
         private FrdbContext _dbContext;
+        private ForestControllerUserAccounts _controllerUserAccounts;
         private BindingSource _bindingSource;
         private BindingSource _bindingSource2;
         private BindingSource _bindingSourceLog;
         private string username;
-        private ForestControllerUserAccounts _controllerUserAccounts;
         public MainUI(UserAccount usn)
         {
             InitializeComponent();

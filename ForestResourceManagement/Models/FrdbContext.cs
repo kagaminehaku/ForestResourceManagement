@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ForestResourceManagement;
+namespace ForestResourceManagement.Models;
 
 public partial class FrdbContext : DbContext
 {
@@ -16,6 +16,10 @@ public partial class FrdbContext : DbContext
     }
 
     public virtual DbSet<AccessTable> AccessTables { get; set; }
+
+    public virtual DbSet<DanhMucDongVat> DanhMucDongVats { get; set; }
+
+    public virtual DbSet<DongVat> DongVats { get; set; }
 
     public virtual DbSet<HuyenTable> HuyenTables { get; set; }
 
@@ -48,6 +52,29 @@ public partial class FrdbContext : DbContext
                 .HasColumnName("AcessID");
             entity.Property(e => e.AccessInfo).HasColumnType("text");
             entity.Property(e => e.AccessName).HasMaxLength(64);
+        });
+
+        modelBuilder.Entity<DanhMucDongVat>(entity =>
+        {
+            entity.HasKey(e => e.DanhMucDvid);
+
+            entity.ToTable("DanhMucDongVat");
+
+            entity.Property(e => e.DanhMucDvid).HasColumnName("DanhMucDVID");
+            entity.Property(e => e.TenDanhMucDv)
+                .HasMaxLength(256)
+                .HasColumnName("TenDanhMucDV");
+            entity.Property(e => e.ThongTin).HasColumnType("text");
+        });
+
+        modelBuilder.Entity<DongVat>(entity =>
+        {
+            entity.ToTable("DongVat");
+
+            entity.Property(e => e.DongVatId)
+                .ValueGeneratedNever()
+                .HasColumnName("DongVatID");
+            entity.Property(e => e.TenDongVat).HasMaxLength(256);
         });
 
         modelBuilder.Entity<HuyenTable>(entity =>
