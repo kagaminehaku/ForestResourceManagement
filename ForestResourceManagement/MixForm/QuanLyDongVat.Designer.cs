@@ -45,6 +45,7 @@
             ThemDV.TabIndex = 0;
             ThemDV.Text = "ThemDV";
             ThemDV.UseVisualStyleBackColor = true;
+            ThemDV.Click += ThemDV_Click;
             // 
             // XoaDV
             // 
@@ -54,6 +55,7 @@
             XoaDV.TabIndex = 1;
             XoaDV.Text = "XoaDV";
             XoaDV.UseVisualStyleBackColor = true;
+            XoaDV.Click += XoaDV_Click;
             // 
             // dataGridView1
             // 
@@ -64,6 +66,7 @@
             dataGridView1.Location = new Point(60, 141);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(385, 248);
             dataGridView1.TabIndex = 2;
             // 
@@ -75,6 +78,7 @@
             SuaDV.TabIndex = 3;
             SuaDV.Text = "SuaDV";
             SuaDV.UseVisualStyleBackColor = true;
+            SuaDV.Click += SuaDV_Click;
             // 
             // textBox1
             // 
@@ -82,6 +86,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(385, 23);
             textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
@@ -104,7 +109,7 @@
             Controls.Add(XoaDV);
             Controls.Add(ThemDV);
             Name = "QuanLyDongVat";
-            Text = "Form1";
+            Text = "QuanLyDongVat";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

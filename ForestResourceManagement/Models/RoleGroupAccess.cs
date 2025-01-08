@@ -12,4 +12,6 @@ public partial class RoleGroupAccess
     public int AccessId { get; set; }
 
     public virtual AccessTable Access { get; set; } = null!;
+
+    public virtual RoleGroupTable RoleGroup { get; set; } = null!;
 }

@@ -22,4 +22,6 @@ public partial class UserAccount
     public bool IsForgotPassword { get; set; }
 
     public Guid? RoleGroupId { get; set; }
+
+    public virtual RoleGroupTable? RoleGroup { get; set; }
 }

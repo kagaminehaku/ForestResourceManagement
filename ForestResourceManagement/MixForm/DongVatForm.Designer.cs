@@ -1,6 +1,6 @@
 ﻿namespace ForestResourceManagement.MixForm
 {
-    partial class DongVat
+    partial class DongVatForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,6 +35,7 @@
             comboBox1 = new ComboBox();
             label3 = new Label();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label2
@@ -89,18 +90,30 @@
             // 
             // button1
             // 
-            button1.Location = new Point(241, 279);
+            button1.Location = new Point(162, 283);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 10;
             button1.Text = "Lưu";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // DongVat
+            // button2
+            // 
+            button2.Location = new Point(328, 283);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 11;
+            button2.Text = "Huỷ";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // DongVatForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(566, 318);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(comboBox1);
@@ -108,7 +121,7 @@
             Controls.Add(label1);
             Controls.Add(richTextBox1);
             Controls.Add(textBox1);
-            Name = "DongVat";
+            Name = "DongVatForm";
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
@@ -123,5 +136,6 @@
         private ComboBox comboBox1;
         private Label label3;
         private Button button1;
+        private Button button2;
     }
 }

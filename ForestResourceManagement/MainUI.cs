@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using ForestResourceManagement.MixForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ForestResourceManagement.Controllers;
-using ForestResourceManagement.Models;
 
 namespace ForestResourceManagement
 {
@@ -17,12 +16,14 @@ namespace ForestResourceManagement
         private BindingSource _bindingSource2;
         private BindingSource _bindingSourceLog;
         private string username;
+        private UserAccount userAccount;
         public MainUI(UserAccount usn)
         {
             InitializeComponent();
             _dbContext = new FrdbContext();
             _controllerUserAccounts = new ForestControllerUserAccounts(_dbContext);
             username = usn.Username;
+            userAccount = usn;
             LoadHuyenList();
             LoadLogList();
             LoadInsList();
@@ -32,12 +33,12 @@ namespace ForestResourceManagement
 
         private void LoadInsList()
         {
-            comboBox1.DataSource = null ;
-            comboBox1.DataSource= _dbContext.InstructionTables.ToList();
+            comboBox1.DataSource = null;
+            comboBox1.DataSource = _dbContext.InstructionTables.ToList();
             comboBox1.DisplayMember = "InstructionName";
             comboBox1.ValueMember = "InstructionId";
             comboBox1.SelectedIndex = -1;
-            _controllerUserAccounts.LogAction(username, "Load Danh Sach Huong Dan");
+            //_controllerUserAccounts.LogAction(username, "Load Danh Sach Huong Dan");
         }
 
         private void LoadHuyenList()
@@ -57,7 +58,7 @@ namespace ForestResourceManagement
             DanhSachHuyen.DisplayMember = "TenHuyen";
             DanhSachHuyen.ValueMember = "HuyenId";
             DanhSachHuyen.SelectedIndex = -1;
-            _controllerUserAccounts.LogAction(username, "Load Danh Sach Huyen");
+            //_controllerUserAccounts.LogAction(username, "Load Danh Sach Huyen");
         }
 
         private void LoadLogList()
@@ -73,7 +74,7 @@ namespace ForestResourceManagement
             DanhSachLog.DataSource = null;
             DanhSachLog.DataSource = _bindingSourceLog;
 
-            _controllerUserAccounts.LogAction(username, "Load Danh Sach Log");
+            //_controllerUserAccounts.LogAction(username, "Load Danh Sach Log");
 
 
         }
@@ -331,7 +332,7 @@ namespace ForestResourceManagement
         {
             if (comboBox1.SelectedValue is int selectinsid)
             {
-               if (MessageBox.Show("Bạn có chắc chắn muốn xoá huong dan này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes && selectinsid != null)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá huong dan này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes && selectinsid != null)
                 {
                     var delins = _dbContext.InstructionTables.Find(selectinsid);
                     _dbContext.InstructionTables.Remove(delins);
@@ -349,6 +350,29 @@ namespace ForestResourceManagement
                 var item = _dbContext.InstructionTables.Find(selectinsid);
                 richTextBox4.Text = item.InstructionContent;
             }
+        }
+
+        private void QuanLyDanhMucDongVat_Click(object sender, EventArgs e)
+        {
+            var danhmucdongvatform = new QuanLyDanhMucDongVat(userAccount);
+            danhmucdongvatform.FormClosed += (s, args) => this.Show();
+            danhmucdongvatform.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var dongvatform = new QuanLyDongVat(userAccount);
+            dongvatform.FormClosed += (s, args) => this.Show();
+            dongvatform.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            userAccount = null;
+            //Access log noted
+            this.Close();
         }
     }
 }

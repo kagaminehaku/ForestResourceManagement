@@ -1,7 +1,8 @@
-using ForestResourceManagement.Controllers;
-using ForestResourceManagement.Models;
+﻿using ForestResourceManagement.Controllers;
+using ForestResourceManagement.MixForm;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ForestResourceManagement
 {
@@ -38,7 +39,10 @@ namespace ForestResourceManagement
             if (useraccount.Password == "reset")
             {
                 MessageBox.Show("Your password has been reset,please set a new one");
+                return;//change password form here
             }
+            tbusername.Text = string.Empty;
+            tbpassword.Text = string.Empty; 
             var mainuiform = new MainUI(useraccount);
             mainuiform.FormClosed += (s, args) => this.Show();
             mainuiform.Show();
@@ -53,7 +57,24 @@ namespace ForestResourceManagement
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            using (var form = new ForgetPassword())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    string user = form.Username;
+                    var useraccount = _dbContext.UserAccounts.FirstOrDefault(u => u.Username == user);
+                    if (useraccount == null) {
+                        MessageBox.Show("Không tìm thấy người dùng");
+                        return;
+                    }
+                    if (useraccount.IsForgotPassword) {
+                        MessageBox.Show("Đã gửi yêu cầu vui lòng đợi");
+                        return;
+                    }
+                    useraccount.IsForgotPassword = true;
+                    _dbContext.SaveChanges();
+                }
+            }
         }
     }
 }

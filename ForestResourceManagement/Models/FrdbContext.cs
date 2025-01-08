@@ -72,7 +72,9 @@ public partial class FrdbContext : DbContext
             entity.ToTable("DongVat");
 
             entity.Property(e => e.DongVatId).HasColumnName("DongVatID");
+            entity.Property(e => e.DanhMucDvid).HasColumnName("DanhMucDVID");
             entity.Property(e => e.TenDongVat).HasMaxLength(256);
+            entity.Property(e => e.ThongTinDongVat).HasColumnType("text");
         });
 
         modelBuilder.Entity<HuyenTable>(entity =>
@@ -124,6 +126,11 @@ public partial class FrdbContext : DbContext
                 .HasForeignKey(d => d.AccessId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_RoleGroupAccess_AccessTable");
+
+            entity.HasOne(d => d.RoleGroup).WithMany()
+                .HasForeignKey(d => d.RoleGroupId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RoleGroupAccess_RoleGroupTable");
         });
 
         modelBuilder.Entity<RoleGroupTable>(entity =>
@@ -135,7 +142,6 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.RoleGroupId)
                 .ValueGeneratedNever()
                 .HasColumnName("RoleGroupID");
-            entity.Property(e => e.AccessId).HasColumnName("AccessID");
             entity.Property(e => e.RoleGroupName).HasMaxLength(128);
         });
 
@@ -149,6 +155,10 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.Phone).HasMaxLength(16);
             entity.Property(e => e.RoleGroupId).HasColumnName("RoleGroupID");
             entity.Property(e => e.Username).HasMaxLength(128);
+
+            entity.HasOne(d => d.RoleGroup).WithMany(p => p.UserAccounts)
+                .HasForeignKey(d => d.RoleGroupId)
+                .HasConstraintName("FK_UserAccounts_RoleGroupTable");
         });
 
         modelBuilder.Entity<XaTable>(entity =>
