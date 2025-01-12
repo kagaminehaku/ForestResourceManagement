@@ -370,7 +370,25 @@ namespace ForestResourceManagement
 
         private void button5_Click(object sender, EventArgs e)
         {
-            userAccount = null;
+            //Access log noted
+            this.Close();
+        }
+
+        private void ChangePwd_Click(object sender, EventArgs e)
+        {
+            if (Hash.HashingPassword(crpwd.Text) != userAccount.Password)
+            {
+                MessageBox.Show("Mật khẩu cũ không đúng");
+                return;
+            }
+            if (newpwd.Text != renterpwd.Text) {
+                MessageBox.Show("Mật khẩu mới không trùng khớp");
+                return;
+            }
+            var useraccount = _dbContext.UserAccounts.Find(userAccount.Uid);
+            useraccount.Password = Hash.HashingPassword(newpwd.Text);
+            _dbContext.SaveChanges();
+            MessageBox.Show("Đổi mật khẩu thành công");
             //Access log noted
             this.Close();
         }
