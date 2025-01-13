@@ -17,6 +17,10 @@ public partial class FrdbContext : DbContext
 
     public virtual DbSet<AccessTable> AccessTables { get; set; }
 
+    public virtual DbSet<CoSoLuuTru> CoSoLuuTrus { get; set; }
+
+    public virtual DbSet<DanhMucCoSoLuuTru> DanhMucCoSoLuuTrus { get; set; }
+
     public virtual DbSet<DanhMucDongVat> DanhMucDongVats { get; set; }
 
     public virtual DbSet<DongVat> DongVats { get; set; }
@@ -52,6 +56,32 @@ public partial class FrdbContext : DbContext
                 .HasColumnName("AcessID");
             entity.Property(e => e.AccessInfo).HasColumnType("text");
             entity.Property(e => e.AccessName).HasMaxLength(64);
+        });
+
+        modelBuilder.Entity<CoSoLuuTru>(entity =>
+        {
+            entity.ToTable("CoSoLuuTru");
+
+            entity.Property(e => e.CoSoLuuTruId).HasColumnName("CoSoLuuTruID");
+            entity.Property(e => e.DanhMucCoSoLuuTruId).HasColumnName("DanhMucCoSoLuuTruID");
+            entity.Property(e => e.TenCoSoLuuTru).HasMaxLength(256);
+            entity.Property(e => e.ThongTin).HasColumnType("text");
+
+            entity.HasOne(d => d.DanhMucCoSoLuuTru).WithMany(p => p.CoSoLuuTrus)
+                .HasForeignKey(d => d.DanhMucCoSoLuuTruId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_CoSoLuuTru_DanhMucCoSoLuuTru");
+        });
+
+        modelBuilder.Entity<DanhMucCoSoLuuTru>(entity =>
+        {
+            entity.ToTable("DanhMucCoSoLuuTru");
+
+            entity.Property(e => e.DanhMucCoSoLuuTruId)
+                .ValueGeneratedNever()
+                .HasColumnName("DanhMucCoSoLuuTruID");
+            entity.Property(e => e.TenDanhMucCoSoLuuTru).HasMaxLength(256);
+            entity.Property(e => e.ThongTin).HasColumnType("text");
         });
 
         modelBuilder.Entity<DanhMucDongVat>(entity =>
