@@ -15,6 +15,7 @@ namespace ForestResourceManagement
         private BindingSource _bindingSource;
         private BindingSource _bindingSource2;
         private BindingSource _bindingSourceLog;
+        private BindingSource _bindingSourceuacmanager;
         private string username;
         private UserAccount userAccount;
         public MainUI(UserAccount usn)
@@ -27,8 +28,23 @@ namespace ForestResourceManagement
             LoadHuyenList();
             LoadLogList();
             LoadInsList();
+            LoadUACList();
 
             //DanhSachHuyen.SelectedIndexChanged += DanhSachHuyen_SelectedIndexChanged;
+        }
+
+        private void LoadUACList()
+        {
+            if (_bindingSourceuacmanager == null)
+            {
+                _bindingSourceuacmanager = new BindingSource();
+            }
+
+            var uaclist = _dbContext.UserAccounts.ToList();
+            _bindingSourceuacmanager.DataSource = null;
+            _bindingSourceuacmanager.DataSource = uaclist;
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = _bindingSourceuacmanager;
         }
 
         private void LoadInsList()
@@ -410,6 +426,29 @@ namespace ForestResourceManagement
                 {
                     MessageBox.Show($"Lỗi khi sửa: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var reportHandler = new LogReportHandler(_dbContext);
+            reportHandler.OnGenerateReportButtonClick();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            if (_bindingSourceuacmanager == null)
+            {
+                return;
+            }
+            string searchText = textBox5.Text.Trim();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var filteredList = _dbContext.UserAccounts
+                    .AsEnumerable()
+                    .Where(x => x.Username.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                _bindingSourceuacmanager.DataSource = filteredList;
             }
         }
     }
