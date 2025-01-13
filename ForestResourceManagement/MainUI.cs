@@ -332,7 +332,7 @@ namespace ForestResourceManagement
         {
             if (comboBox1.SelectedValue is int selectinsid)
             {
-                if (MessageBox.Show("Bạn có chắc chắn muốn xoá huong dan này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes && selectinsid != null)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá hướng dẫn này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes && selectinsid != null)
                 {
                     var delins = _dbContext.InstructionTables.Find(selectinsid);
                     _dbContext.InstructionTables.Remove(delins);
@@ -381,7 +381,8 @@ namespace ForestResourceManagement
                 MessageBox.Show("Mật khẩu cũ không đúng");
                 return;
             }
-            if (newpwd.Text != renterpwd.Text) {
+            if (newpwd.Text != renterpwd.Text)
+            {
                 MessageBox.Show("Mật khẩu mới không trùng khớp");
                 return;
             }
@@ -391,6 +392,25 @@ namespace ForestResourceManagement
             MessageBox.Show("Đổi mật khẩu thành công");
             //Access log noted
             this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var form = new QuanLyThongTinTaiKhoan(userAccount);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    _dbContext.UserAccounts.Update(userAccount);
+                    _dbContext.SaveChanges();
+                    MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi sửa: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

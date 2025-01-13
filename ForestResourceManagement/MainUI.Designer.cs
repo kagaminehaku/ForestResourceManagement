@@ -86,6 +86,7 @@ namespace ForestResourceManagement
             logEventDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             richTextBox1 = new RichTextBox();
             logTableBindingSource1 = new BindingSource(components);
+            button6 = new Button();
             formtabcontrol1.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -330,6 +331,7 @@ namespace ForestResourceManagement
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(button6);
             tabPage3.Controls.Add(renterpwdlb);
             tabPage3.Controls.Add(ChangePwd);
             tabPage3.Controls.Add(label7);
@@ -419,7 +421,7 @@ namespace ForestResourceManagement
             // 
             // button5
             // 
-            button5.Location = new Point(258, 242);
+            button5.Location = new Point(260, 314);
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 0;
@@ -697,6 +699,16 @@ namespace ForestResourceManagement
             // 
             logTableBindingSource1.DataSource = typeof(LogTable);
             // 
+            // button6
+            // 
+            button6.Location = new Point(240, 251);
+            button6.Name = "button6";
+            button6.Size = new Size(117, 45);
+            button6.TabIndex = 9;
+            button6.Text = "Thông tin tài khoản";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
             // MainUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -788,5 +800,6 @@ namespace ForestResourceManagement
         private TextBox newpwd;
         private TextBox crpwd;
         private Label renterpwdlb;
+        private Button button6;
     }
 }
