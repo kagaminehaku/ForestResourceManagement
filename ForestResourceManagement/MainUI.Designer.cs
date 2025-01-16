@@ -33,7 +33,7 @@ namespace ForestResourceManagement
         {
             components = new System.ComponentModel.Container();
             formtabcontrol1 = new TabControl();
-            tabPage1 = new TabPage();
+            QuanLyDonViTab = new TabPage();
             groupBox2 = new GroupBox();
             textBox3 = new TextBox();
             DanhSachHuyenDGV = new DataGridView();
@@ -48,10 +48,12 @@ namespace ForestResourceManagement
             ThemXa = new Button();
             DanhSachHuyen = new ComboBox();
             DanhSachXa = new DataGridView();
-            tabPage2 = new TabPage();
+            QuanLyDongVatTab = new TabPage();
+            button9 = new Button();
+            button8 = new Button();
             button4 = new Button();
             QuanLyDanhMucDongVat = new Button();
-            tabPage3 = new TabPage();
+            TaiKhoanTab = new TabPage();
             button6 = new Button();
             renterpwdlb = new Label();
             ChangePwd = new Button();
@@ -62,9 +64,9 @@ namespace ForestResourceManagement
             newpwd = new TextBox();
             crpwd = new TextBox();
             button5 = new Button();
-            tabPage4 = new TabPage();
+            QuanLyGiongCayTab = new TabPage();
             tabPage5 = new TabPage();
-            tabPage6 = new TabPage();
+            HuongDanTab = new TabPage();
             groupBox5 = new GroupBox();
             richTextBox4 = new RichTextBox();
             comboBox1 = new ComboBox();
@@ -75,11 +77,11 @@ namespace ForestResourceManagement
             textBox4 = new TextBox();
             label4 = new Label();
             label3 = new Label();
-            tabPage7 = new TabPage();
+            UserControlTab = new TabPage();
             label8 = new Label();
             textBox5 = new TextBox();
             dataGridView2 = new DataGridView();
-            tabPage8 = new TabPage();
+            SystemLogTab = new TabPage();
             button7 = new Button();
             button1 = new Button();
             richTextBox2 = new RichTextBox();
@@ -92,56 +94,57 @@ namespace ForestResourceManagement
             logEventDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             richTextBox1 = new RichTextBox();
             logTableBindingSource1 = new BindingSource(components);
-            button8 = new Button();
-            button9 = new Button();
+            button10 = new Button();
+            button11 = new Button();
             formtabcontrol1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            QuanLyDonViTab.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachHuyenDGV).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachXa).BeginInit();
-            tabPage2.SuspendLayout();
-            tabPage3.SuspendLayout();
-            tabPage6.SuspendLayout();
+            QuanLyDongVatTab.SuspendLayout();
+            TaiKhoanTab.SuspendLayout();
+            QuanLyGiongCayTab.SuspendLayout();
+            HuongDanTab.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
-            tabPage7.SuspendLayout();
+            UserControlTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            tabPage8.SuspendLayout();
+            SystemLogTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachLog).BeginInit();
             ((System.ComponentModel.ISupportInitialize)logTableBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // formtabcontrol1
             // 
-            formtabcontrol1.Controls.Add(tabPage1);
-            formtabcontrol1.Controls.Add(tabPage2);
-            formtabcontrol1.Controls.Add(tabPage3);
-            formtabcontrol1.Controls.Add(tabPage4);
+            formtabcontrol1.Controls.Add(QuanLyDonViTab);
+            formtabcontrol1.Controls.Add(QuanLyDongVatTab);
+            formtabcontrol1.Controls.Add(TaiKhoanTab);
+            formtabcontrol1.Controls.Add(QuanLyGiongCayTab);
             formtabcontrol1.Controls.Add(tabPage5);
-            formtabcontrol1.Controls.Add(tabPage6);
-            formtabcontrol1.Controls.Add(tabPage7);
-            formtabcontrol1.Controls.Add(tabPage8);
+            formtabcontrol1.Controls.Add(HuongDanTab);
+            formtabcontrol1.Controls.Add(UserControlTab);
+            formtabcontrol1.Controls.Add(SystemLogTab);
             formtabcontrol1.Location = new Point(8, 7);
-            formtabcontrol1.Margin = new Padding(2, 2, 2, 2);
+            formtabcontrol1.Margin = new Padding(2);
             formtabcontrol1.Multiline = true;
             formtabcontrol1.Name = "formtabcontrol1";
             formtabcontrol1.SelectedIndex = 0;
             formtabcontrol1.Size = new Size(592, 494);
             formtabcontrol1.TabIndex = 0;
             // 
-            // tabPage1
+            // QuanLyDonViTab
             // 
-            tabPage1.Controls.Add(groupBox2);
-            tabPage1.Controls.Add(groupBox1);
-            tabPage1.Location = new Point(4, 44);
-            tabPage1.Margin = new Padding(2, 2, 2, 2);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(2, 2, 2, 2);
-            tabPage1.Size = new Size(584, 446);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Quản Lý Đơn Vị";
-            tabPage1.UseVisualStyleBackColor = true;
+            QuanLyDonViTab.Controls.Add(groupBox2);
+            QuanLyDonViTab.Controls.Add(groupBox1);
+            QuanLyDonViTab.Location = new Point(4, 44);
+            QuanLyDonViTab.Margin = new Padding(2);
+            QuanLyDonViTab.Name = "QuanLyDonViTab";
+            QuanLyDonViTab.Padding = new Padding(2);
+            QuanLyDonViTab.Size = new Size(584, 446);
+            QuanLyDonViTab.TabIndex = 0;
+            QuanLyDonViTab.Text = "Quản Lý Đơn Vị";
+            QuanLyDonViTab.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -151,9 +154,9 @@ namespace ForestResourceManagement
             groupBox2.Controls.Add(XoaHuyen);
             groupBox2.Controls.Add(ThemHuyen);
             groupBox2.Location = new Point(18, 13);
-            groupBox2.Margin = new Padding(2, 2, 2, 2);
+            groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(2, 2, 2, 2);
+            groupBox2.Padding = new Padding(2);
             groupBox2.Size = new Size(547, 207);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
@@ -182,7 +185,7 @@ namespace ForestResourceManagement
             // SuaHuyen
             // 
             SuaHuyen.Location = new Point(396, 125);
-            SuaHuyen.Margin = new Padding(2, 2, 2, 2);
+            SuaHuyen.Margin = new Padding(2);
             SuaHuyen.Name = "SuaHuyen";
             SuaHuyen.Size = new Size(107, 38);
             SuaHuyen.TabIndex = 4;
@@ -193,7 +196,7 @@ namespace ForestResourceManagement
             // XoaHuyen
             // 
             XoaHuyen.Location = new Point(396, 83);
-            XoaHuyen.Margin = new Padding(2, 2, 2, 2);
+            XoaHuyen.Margin = new Padding(2);
             XoaHuyen.Name = "XoaHuyen";
             XoaHuyen.Size = new Size(107, 38);
             XoaHuyen.TabIndex = 3;
@@ -204,7 +207,7 @@ namespace ForestResourceManagement
             // ThemHuyen
             // 
             ThemHuyen.Location = new Point(396, 41);
-            ThemHuyen.Margin = new Padding(2, 2, 2, 2);
+            ThemHuyen.Margin = new Padding(2);
             ThemHuyen.Name = "ThemHuyen";
             ThemHuyen.Size = new Size(107, 38);
             ThemHuyen.TabIndex = 2;
@@ -222,9 +225,9 @@ namespace ForestResourceManagement
             groupBox1.Controls.Add(DanhSachHuyen);
             groupBox1.Controls.Add(DanhSachXa);
             groupBox1.Location = new Point(18, 224);
-            groupBox1.Margin = new Padding(2, 2, 2, 2);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 2, 2, 2);
+            groupBox1.Padding = new Padding(2);
             groupBox1.Size = new Size(547, 215);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
@@ -241,7 +244,7 @@ namespace ForestResourceManagement
             // SuaXa
             // 
             SuaXa.Location = new Point(396, 160);
-            SuaXa.Margin = new Padding(2, 2, 2, 2);
+            SuaXa.Margin = new Padding(2);
             SuaXa.Name = "SuaXa";
             SuaXa.Size = new Size(107, 45);
             SuaXa.TabIndex = 3;
@@ -261,7 +264,7 @@ namespace ForestResourceManagement
             // XoaXa
             // 
             XoaXa.Location = new Point(396, 111);
-            XoaXa.Margin = new Padding(2, 2, 2, 2);
+            XoaXa.Margin = new Padding(2);
             XoaXa.Name = "XoaXa";
             XoaXa.Size = new Size(107, 45);
             XoaXa.TabIndex = 2;
@@ -272,7 +275,7 @@ namespace ForestResourceManagement
             // ThemXa
             // 
             ThemXa.Location = new Point(396, 62);
-            ThemXa.Margin = new Padding(2, 2, 2, 2);
+            ThemXa.Margin = new Padding(2);
             ThemXa.Name = "ThemXa";
             ThemXa.Size = new Size(107, 46);
             ThemXa.TabIndex = 1;
@@ -284,7 +287,7 @@ namespace ForestResourceManagement
             // 
             DanhSachHuyen.FormattingEnabled = true;
             DanhSachHuyen.Location = new Point(354, 33);
-            DanhSachHuyen.Margin = new Padding(2, 2, 2, 2);
+            DanhSachHuyen.Margin = new Padding(2);
             DanhSachHuyen.Name = "DanhSachHuyen";
             DanhSachHuyen.Size = new Size(189, 23);
             DanhSachHuyen.TabIndex = 1;
@@ -296,27 +299,47 @@ namespace ForestResourceManagement
             DanhSachXa.AllowUserToDeleteRows = false;
             DanhSachXa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DanhSachXa.Location = new Point(21, 44);
-            DanhSachXa.Margin = new Padding(2, 2, 2, 2);
+            DanhSachXa.Margin = new Padding(2);
             DanhSachXa.Name = "DanhSachXa";
             DanhSachXa.RowHeadersWidth = 62;
             DanhSachXa.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DanhSachXa.Size = new Size(326, 160);
             DanhSachXa.TabIndex = 0;
             // 
-            // tabPage2
+            // QuanLyDongVatTab
             // 
-            tabPage2.Controls.Add(button9);
-            tabPage2.Controls.Add(button8);
-            tabPage2.Controls.Add(button4);
-            tabPage2.Controls.Add(QuanLyDanhMucDongVat);
-            tabPage2.Location = new Point(4, 44);
-            tabPage2.Margin = new Padding(2, 2, 2, 2);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(2, 2, 2, 2);
-            tabPage2.Size = new Size(584, 446);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Quản Lý Động Vật";
-            tabPage2.UseVisualStyleBackColor = true;
+            QuanLyDongVatTab.Controls.Add(button9);
+            QuanLyDongVatTab.Controls.Add(button8);
+            QuanLyDongVatTab.Controls.Add(button4);
+            QuanLyDongVatTab.Controls.Add(QuanLyDanhMucDongVat);
+            QuanLyDongVatTab.Location = new Point(4, 44);
+            QuanLyDongVatTab.Margin = new Padding(2);
+            QuanLyDongVatTab.Name = "QuanLyDongVatTab";
+            QuanLyDongVatTab.Padding = new Padding(2);
+            QuanLyDongVatTab.Size = new Size(584, 446);
+            QuanLyDongVatTab.TabIndex = 1;
+            QuanLyDongVatTab.Text = "Quản Lý Động Vật";
+            QuanLyDongVatTab.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            button9.Location = new Point(330, 251);
+            button9.Name = "button9";
+            button9.Size = new Size(189, 53);
+            button9.TabIndex = 3;
+            button9.Text = "Quản Lý Danh Mục Biến Động";
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(81, 251);
+            button8.Name = "button8";
+            button8.Size = new Size(189, 53);
+            button8.TabIndex = 2;
+            button8.Text = "Quản Lý Biến Động";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // button4
             // 
@@ -338,26 +361,26 @@ namespace ForestResourceManagement
             QuanLyDanhMucDongVat.UseVisualStyleBackColor = true;
             QuanLyDanhMucDongVat.Click += QuanLyDanhMucDongVat_Click;
             // 
-            // tabPage3
+            // TaiKhoanTab
             // 
-            tabPage3.Controls.Add(button6);
-            tabPage3.Controls.Add(renterpwdlb);
-            tabPage3.Controls.Add(ChangePwd);
-            tabPage3.Controls.Add(label7);
-            tabPage3.Controls.Add(label6);
-            tabPage3.Controls.Add(label5);
-            tabPage3.Controls.Add(renterpwd);
-            tabPage3.Controls.Add(newpwd);
-            tabPage3.Controls.Add(crpwd);
-            tabPage3.Controls.Add(button5);
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Margin = new Padding(2, 2, 2, 2);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(2, 2, 2, 2);
-            tabPage3.Size = new Size(584, 466);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Tài Khoản";
-            tabPage3.UseVisualStyleBackColor = true;
+            TaiKhoanTab.Controls.Add(button6);
+            TaiKhoanTab.Controls.Add(renterpwdlb);
+            TaiKhoanTab.Controls.Add(ChangePwd);
+            TaiKhoanTab.Controls.Add(label7);
+            TaiKhoanTab.Controls.Add(label6);
+            TaiKhoanTab.Controls.Add(label5);
+            TaiKhoanTab.Controls.Add(renterpwd);
+            TaiKhoanTab.Controls.Add(newpwd);
+            TaiKhoanTab.Controls.Add(crpwd);
+            TaiKhoanTab.Controls.Add(button5);
+            TaiKhoanTab.Location = new Point(4, 44);
+            TaiKhoanTab.Margin = new Padding(2);
+            TaiKhoanTab.Name = "TaiKhoanTab";
+            TaiKhoanTab.Padding = new Padding(2);
+            TaiKhoanTab.Size = new Size(584, 446);
+            TaiKhoanTab.TabIndex = 2;
+            TaiKhoanTab.Text = "Tài Khoản";
+            TaiKhoanTab.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -448,40 +471,42 @@ namespace ForestResourceManagement
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
-            // tabPage4
+            // QuanLyGiongCayTab
             // 
-            tabPage4.Location = new Point(4, 24);
-            tabPage4.Margin = new Padding(2, 2, 2, 2);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(2, 2, 2, 2);
-            tabPage4.Size = new Size(584, 466);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "tabPage4";
-            tabPage4.UseVisualStyleBackColor = true;
+            QuanLyGiongCayTab.Controls.Add(button11);
+            QuanLyGiongCayTab.Controls.Add(button10);
+            QuanLyGiongCayTab.Location = new Point(4, 44);
+            QuanLyGiongCayTab.Margin = new Padding(2);
+            QuanLyGiongCayTab.Name = "QuanLyGiongCayTab";
+            QuanLyGiongCayTab.Padding = new Padding(2);
+            QuanLyGiongCayTab.Size = new Size(584, 446);
+            QuanLyGiongCayTab.TabIndex = 3;
+            QuanLyGiongCayTab.Text = "Quản Lý Giống Cây";
+            QuanLyGiongCayTab.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
             tabPage5.Location = new Point(4, 24);
-            tabPage5.Margin = new Padding(2, 2, 2, 2);
+            tabPage5.Margin = new Padding(2);
             tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(2, 2, 2, 2);
+            tabPage5.Padding = new Padding(2);
             tabPage5.Size = new Size(584, 466);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
             // 
-            // tabPage6
+            // HuongDanTab
             // 
-            tabPage6.Controls.Add(groupBox5);
-            tabPage6.Controls.Add(groupBox3);
-            tabPage6.Location = new Point(4, 24);
-            tabPage6.Margin = new Padding(2, 2, 2, 2);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Padding = new Padding(2, 2, 2, 2);
-            tabPage6.Size = new Size(584, 466);
-            tabPage6.TabIndex = 5;
-            tabPage6.Text = "Instruction";
-            tabPage6.UseVisualStyleBackColor = true;
+            HuongDanTab.Controls.Add(groupBox5);
+            HuongDanTab.Controls.Add(groupBox3);
+            HuongDanTab.Location = new Point(4, 24);
+            HuongDanTab.Margin = new Padding(2);
+            HuongDanTab.Name = "HuongDanTab";
+            HuongDanTab.Padding = new Padding(2);
+            HuongDanTab.Size = new Size(584, 466);
+            HuongDanTab.TabIndex = 5;
+            HuongDanTab.Text = "Hướng Dẫn";
+            HuongDanTab.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -579,19 +604,19 @@ namespace ForestResourceManagement
             label3.TabIndex = 2;
             label3.Text = "Tiêu đề hướng dẫn";
             // 
-            // tabPage7
+            // UserControlTab
             // 
-            tabPage7.Controls.Add(label8);
-            tabPage7.Controls.Add(textBox5);
-            tabPage7.Controls.Add(dataGridView2);
-            tabPage7.Location = new Point(4, 24);
-            tabPage7.Margin = new Padding(2, 2, 2, 2);
-            tabPage7.Name = "tabPage7";
-            tabPage7.Padding = new Padding(2, 2, 2, 2);
-            tabPage7.Size = new Size(584, 466);
-            tabPage7.TabIndex = 6;
-            tabPage7.Text = "UserManager";
-            tabPage7.UseVisualStyleBackColor = true;
+            UserControlTab.Controls.Add(label8);
+            UserControlTab.Controls.Add(textBox5);
+            UserControlTab.Controls.Add(dataGridView2);
+            UserControlTab.Location = new Point(4, 44);
+            UserControlTab.Margin = new Padding(2);
+            UserControlTab.Name = "UserControlTab";
+            UserControlTab.Padding = new Padding(2);
+            UserControlTab.Size = new Size(584, 446);
+            UserControlTab.TabIndex = 6;
+            UserControlTab.Text = "Quản Lý Người Dùng";
+            UserControlTab.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -606,7 +631,7 @@ namespace ForestResourceManagement
             // textBox5
             // 
             textBox5.Location = new Point(27, 52);
-            textBox5.Margin = new Padding(2, 2, 2, 2);
+            textBox5.Margin = new Padding(2);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(368, 23);
             textBox5.TabIndex = 1;
@@ -616,34 +641,34 @@ namespace ForestResourceManagement
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(27, 83);
-            dataGridView2.Margin = new Padding(2, 2, 2, 2);
+            dataGridView2.Margin = new Padding(2);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
             dataGridView2.Size = new Size(367, 135);
             dataGridView2.TabIndex = 0;
             // 
-            // tabPage8
+            // SystemLogTab
             // 
-            tabPage8.Controls.Add(button7);
-            tabPage8.Controls.Add(button1);
-            tabPage8.Controls.Add(richTextBox2);
-            tabPage8.Controls.Add(label1);
-            tabPage8.Controls.Add(textBox1);
-            tabPage8.Controls.Add(DanhSachLog);
-            tabPage8.Controls.Add(richTextBox1);
-            tabPage8.Location = new Point(4, 24);
-            tabPage8.Margin = new Padding(2, 2, 2, 2);
-            tabPage8.Name = "tabPage8";
-            tabPage8.Padding = new Padding(2, 2, 2, 2);
-            tabPage8.Size = new Size(584, 466);
-            tabPage8.TabIndex = 7;
-            tabPage8.Text = "SystemLog";
-            tabPage8.UseVisualStyleBackColor = true;
+            SystemLogTab.Controls.Add(button7);
+            SystemLogTab.Controls.Add(button1);
+            SystemLogTab.Controls.Add(richTextBox2);
+            SystemLogTab.Controls.Add(label1);
+            SystemLogTab.Controls.Add(textBox1);
+            SystemLogTab.Controls.Add(DanhSachLog);
+            SystemLogTab.Controls.Add(richTextBox1);
+            SystemLogTab.Location = new Point(4, 44);
+            SystemLogTab.Margin = new Padding(2);
+            SystemLogTab.Name = "SystemLogTab";
+            SystemLogTab.Padding = new Padding(2);
+            SystemLogTab.Size = new Size(584, 446);
+            SystemLogTab.TabIndex = 7;
+            SystemLogTab.Text = "SystemLog";
+            SystemLogTab.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
             button7.Location = new Point(428, 396);
-            button7.Margin = new Padding(2, 2, 2, 2);
+            button7.Margin = new Padding(2);
             button7.Name = "button7";
             button7.Size = new Size(99, 40);
             button7.TabIndex = 7;
@@ -741,7 +766,7 @@ namespace ForestResourceManagement
             // 
             richTextBox1.Enabled = false;
             richTextBox1.Location = new Point(19, 265);
-            richTextBox1.Margin = new Padding(2, 2, 2, 2);
+            richTextBox1.Margin = new Padding(2);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(554, 102);
             richTextBox1.TabIndex = 1;
@@ -751,25 +776,25 @@ namespace ForestResourceManagement
             // 
             logTableBindingSource1.DataSource = typeof(LogTable);
             // 
-            // button8
+            // button10
             // 
-            button8.Location = new Point(81, 251);
-            button8.Name = "button8";
-            button8.Size = new Size(189, 53);
-            button8.TabIndex = 2;
-            button8.Text = "Quản Lý Biến Động";
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += button8_Click;
+            button10.Location = new Point(94, 127);
+            button10.Name = "button10";
+            button10.Size = new Size(201, 65);
+            button10.TabIndex = 0;
+            button10.Text = "Quản Lý Danh Mục Giống Cây";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
-            // button9
+            // button11
             // 
-            button9.Location = new Point(330, 251);
-            button9.Name = "button9";
-            button9.Size = new Size(189, 53);
-            button9.TabIndex = 3;
-            button9.Text = "Quản Lý Danh Mục Biến Động";
-            button9.UseVisualStyleBackColor = true;
-            button9.Click += button9_Click;
+            button11.Location = new Point(329, 127);
+            button11.Name = "button11";
+            button11.Size = new Size(189, 65);
+            button11.TabIndex = 1;
+            button11.Text = "Quản Lý Giống Cây";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // MainUI
             // 
@@ -777,29 +802,30 @@ namespace ForestResourceManagement
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(612, 512);
             Controls.Add(formtabcontrol1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MainUI";
             Text = "MainUI";
             formtabcontrol1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            QuanLyDonViTab.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachHuyenDGV).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachXa).EndInit();
-            tabPage2.ResumeLayout(false);
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
-            tabPage6.ResumeLayout(false);
+            QuanLyDongVatTab.ResumeLayout(false);
+            TaiKhoanTab.ResumeLayout(false);
+            TaiKhoanTab.PerformLayout();
+            QuanLyGiongCayTab.ResumeLayout(false);
+            HuongDanTab.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            tabPage7.ResumeLayout(false);
-            tabPage7.PerformLayout();
+            UserControlTab.ResumeLayout(false);
+            UserControlTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            tabPage8.ResumeLayout(false);
-            tabPage8.PerformLayout();
+            SystemLogTab.ResumeLayout(false);
+            SystemLogTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DanhSachLog).EndInit();
             ((System.ComponentModel.ISupportInitialize)logTableBindingSource1).EndInit();
             ResumeLayout(false);
@@ -808,14 +834,14 @@ namespace ForestResourceManagement
         #endregion
 
         private TabControl formtabcontrol1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
+        private TabPage QuanLyDonViTab;
+        private TabPage QuanLyDongVatTab;
+        private TabPage TaiKhoanTab;
+        private TabPage QuanLyGiongCayTab;
         private TabPage tabPage5;
-        private TabPage tabPage6;
-        private TabPage tabPage7;
-        private TabPage tabPage8;
+        private TabPage HuongDanTab;
+        private TabPage UserControlTab;
+        private TabPage SystemLogTab;
         private RichTextBox richTextBox1;
         private DataGridView DanhSachLog;
         private RichTextBox richTextBox2;
@@ -869,5 +895,7 @@ namespace ForestResourceManagement
         private TextBox textBox5;
         private Button button9;
         private Button button8;
+        private Button button11;
+        private Button button10;
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ForestResourceManagement.Models;
 
-namespace ForestResourceManagement.MixForm
+namespace ForestResourceManagement.MixForm.QLHuyenXa
 {
     public class HuyenForm : Form
     {
@@ -19,10 +19,10 @@ namespace ForestResourceManagement.MixForm
 
             Huyen = huyen ?? new HuyenTable();
 
-            var label = new Label { Text = "Tên Huyện:", AutoSize = true, Location = new System.Drawing.Point(10, 20) };
-            var textBox = new TextBox { Text = Huyen.TenHuyen, Location = new System.Drawing.Point(10, 45), Size = new System.Drawing.Size(200, 20) };
-            var buttonOk = new Button { Text = "OK", DialogResult = DialogResult.OK, Location = new System.Drawing.Point(10, 80) };
-            var buttonCancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Location = new System.Drawing.Point(100, 80) };
+            var label = new Label { Text = "Tên Huyện:", AutoSize = true, Location = new Point(10, 20) };
+            var textBox = new TextBox { Text = Huyen.TenHuyen, Location = new Point(10, 45), Size = new Size(200, 20) };
+            var buttonOk = new Button { Text = "OK", DialogResult = DialogResult.OK, Location = new Point(10, 80) };
+            var buttonCancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Location = new Point(100, 80) };
 
             Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
 

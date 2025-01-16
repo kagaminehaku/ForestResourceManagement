@@ -6,6 +6,7 @@ using ForestResourceManagement.MixForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ForestResourceManagement.Controllers;
 using ForestResourceManagement.Models;
+using ForestResourceManagement.MixForm.QLHuyenXa;
 
 namespace ForestResourceManagement
 {
@@ -459,6 +460,16 @@ namespace ForestResourceManagement
         }
 
         private void button9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
         {
 
         }

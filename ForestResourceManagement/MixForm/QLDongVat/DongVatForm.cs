@@ -20,6 +20,8 @@ namespace ForestResourceManagement.MixForm
             InitializeComponent();
             _dbcontext = new FrdbContext();
             dongVat = dongVat1 ?? new DongVat();
+            textBox1.Text = dongVat.TenDongVat;
+            richTextBox1.Text = dongVat.ThongTinDongVat; 
             LoadDataComboBox();
         }
 
