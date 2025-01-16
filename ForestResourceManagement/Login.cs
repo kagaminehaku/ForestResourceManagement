@@ -1,5 +1,6 @@
 ﻿using ForestResourceManagement.Controllers;
 using ForestResourceManagement.MixForm;
+using ForestResourceManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;

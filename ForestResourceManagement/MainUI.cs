@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ForestResourceManagement.MixForm;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ForestResourceManagement.Controllers;
+using ForestResourceManagement.Models;
 
 namespace ForestResourceManagement
 {
@@ -450,6 +451,16 @@ namespace ForestResourceManagement
                     .ToList();
                 _bindingSourceuacmanager.DataSource = filteredList;
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
