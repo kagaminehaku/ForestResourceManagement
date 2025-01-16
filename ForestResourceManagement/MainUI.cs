@@ -7,6 +7,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ForestResourceManagement.Controllers;
 using ForestResourceManagement.Models;
 using ForestResourceManagement.MixForm.QLHuyenXa;
+using ForestResourceManagement.MixForm.QLBienDong;
 
 namespace ForestResourceManagement
 {
@@ -456,12 +457,18 @@ namespace ForestResourceManagement
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            var quanlybiendong = new QuanLyBienDong(userAccount);
+            quanlybiendong.FormClosed += (s, args) => this.Show();
+            quanlybiendong.Show();
+            this.Hide();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            var danhmucbiendong = new QuanLyDanhMucBienDong(userAccount);
+            danhmucbiendong.FormClosed += (s, args) => this.Show();
+            danhmucbiendong.Show();
+            this.Hide();
         }
 
         private void button10_Click(object sender, EventArgs e)
