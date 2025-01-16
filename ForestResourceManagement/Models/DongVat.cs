@@ -12,4 +12,6 @@ public partial class DongVat
     public string? ThongTinDongVat { get; set; }
 
     public int DanhMucDvid { get; set; }
+
+    public virtual DanhMucDongVat DanhMucDv { get; set; } = null!;
 }

@@ -17,17 +17,17 @@ public partial class FrdbContext : DbContext
 
     public virtual DbSet<AccessTable> AccessTables { get; set; }
 
+    public virtual DbSet<BienDongSoLuong> BienDongSoLuongs { get; set; }
+
     public virtual DbSet<CoSoLuuTru> CoSoLuuTrus { get; set; }
+
+    public virtual DbSet<DanhMucBienDong> DanhMucBienDongs { get; set; }
 
     public virtual DbSet<DanhMucCoSoLuuTru> DanhMucCoSoLuuTrus { get; set; }
 
     public virtual DbSet<DanhMucDongVat> DanhMucDongVats { get; set; }
 
-    public virtual DbSet<DanhMucGiongCay> DanhMucGiongCays { get; set; }
-
     public virtual DbSet<DongVat> DongVats { get; set; }
-
-    public virtual DbSet<GiongCayTrong> GiongCayTrongs { get; set; }
 
     public virtual DbSet<HuyenTable> HuyenTables { get; set; }
 
@@ -45,7 +45,7 @@ public partial class FrdbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=kagaminehaku.softether.net,25564;Database=FRDB;user id=sa;password=17102003;trust server certificate=true");
+        => optionsBuilder.UseSqlServer("Server=.;Database=FRDB;user id=sa;password=17102003;trust server certificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,6 +62,24 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.AccessName).HasMaxLength(64);
         });
 
+        modelBuilder.Entity<BienDongSoLuong>(entity =>
+        {
+            entity.HasKey(e => e.BienDongSoLuongId).HasName("PK_Table_1");
+
+            entity.ToTable("BienDongSoLuong");
+
+            entity.Property(e => e.BienDongSoLuongId)
+                .ValueGeneratedNever()
+                .HasColumnName("BienDongSoLuongID");
+            entity.Property(e => e.DanhMucBienDongId).HasColumnName("DanhMucBienDongID");
+            entity.Property(e => e.DongVat).HasMaxLength(256);
+            entity.Property(e => e.TenBienDong).HasMaxLength(256);
+
+            entity.HasOne(d => d.DanhMucBienDong).WithMany(p => p.BienDongSoLuongs)
+                .HasForeignKey(d => d.DanhMucBienDongId)
+                .HasConstraintName("FK_BienDongSoLuong_DanhMucBienDong");
+        });
+
         modelBuilder.Entity<CoSoLuuTru>(entity =>
         {
             entity.ToTable("CoSoLuuTru");
@@ -75,6 +93,15 @@ public partial class FrdbContext : DbContext
                 .HasForeignKey(d => d.DanhMucCoSoLuuTruId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_CoSoLuuTru_DanhMucCoSoLuuTru");
+        });
+
+        modelBuilder.Entity<DanhMucBienDong>(entity =>
+        {
+            entity.ToTable("DanhMucBienDong");
+
+            entity.Property(e => e.DanhMucBienDongId).HasColumnName("DanhMucBienDongID");
+            entity.Property(e => e.TenDanhMucBienDong).HasMaxLength(256);
+            entity.Property(e => e.ThongTin).HasColumnType("text");
         });
 
         modelBuilder.Entity<DanhMucCoSoLuuTru>(entity =>
@@ -101,15 +128,6 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.ThongTin).HasColumnType("text");
         });
 
-        modelBuilder.Entity<DanhMucGiongCay>(entity =>
-        {
-            entity.ToTable("DanhMucGiongCay");
-
-            entity.Property(e => e.DanhMucGiongCayId).HasColumnName("DanhMucGiongCayID");
-            entity.Property(e => e.TenDanhMuc).HasMaxLength(256);
-            entity.Property(e => e.ThongTin).HasColumnType("text");
-        });
-
         modelBuilder.Entity<DongVat>(entity =>
         {
             entity.ToTable("DongVat");
@@ -118,16 +136,11 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.DanhMucDvid).HasColumnName("DanhMucDVID");
             entity.Property(e => e.TenDongVat).HasMaxLength(256);
             entity.Property(e => e.ThongTinDongVat).HasColumnType("text");
-        });
 
-        modelBuilder.Entity<GiongCayTrong>(entity =>
-        {
-            entity.ToTable("GiongCayTrong");
-
-            entity.Property(e => e.GiongCayTrongId).HasColumnName("GiongCayTrongID");
-            entity.Property(e => e.DanhMucGiongCayTrongId).HasColumnName("DanhMucGiongCayTrongID");
-            entity.Property(e => e.TenGiongCayTrong).HasMaxLength(256);
-            entity.Property(e => e.ThongTin).HasColumnType("text");
+            entity.HasOne(d => d.DanhMucDv).WithMany(p => p.DongVats)
+                .HasForeignKey(d => d.DanhMucDvid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DongVat_DanhMucDongVat");
         });
 
         modelBuilder.Entity<HuyenTable>(entity =>

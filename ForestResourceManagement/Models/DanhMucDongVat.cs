@@ -10,4 +10,6 @@ public partial class DanhMucDongVat
     public string TenDanhMucDv { get; set; } = null!;
 
     public string ThongTin { get; set; } = null!;
+
+    public virtual ICollection<DongVat> DongVats { get; set; } = new List<DongVat>();
 }
