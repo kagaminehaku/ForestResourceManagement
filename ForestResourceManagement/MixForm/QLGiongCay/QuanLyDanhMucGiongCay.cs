@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ForestResourceManagement.Models;
 
@@ -14,13 +8,14 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
     public partial class QuanLyDanhMucGiongCay : Form
     {
         public UserAccount Account;
-        private FrdbContext FrdbContext;
+        private FrdbContext _dbContext;
         private BindingSource _bindingSource;
+
         public QuanLyDanhMucGiongCay(UserAccount userAccount)
         {
             InitializeComponent();
             Account = userAccount;
-            FrdbContext = new FrdbContext();
+            _dbContext = new FrdbContext();
             LoadDataToDGV();
         }
 
@@ -31,22 +26,22 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
                 _bindingSource = new BindingSource();
             }
 
-            var danhMucDongVats = FrdbContext.DanhMucDongVats.ToList();
-            _bindingSource.DataSource = danhMucDongVats;
+            var danhMucGiongCays = _dbContext.DanhMucGiongCays.ToList();
+            _bindingSource.DataSource = danhMucGiongCays;
             dataGridView1.DataSource = _bindingSource;
         }
 
         private void ThemDV_Click(object sender, EventArgs e)
         {
-            var newDanhMucDongVat = new DanhMucDongVat();
-            var form = new DanhMucDongVatForm(newDanhMucDongVat);
+            var newDanhMucGiongCay = new DanhMucGiongCay();
+            var form = new DanhMucGiongCayForm(newDanhMucGiongCay);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    FrdbContext.DanhMucDongVats.Add(newDanhMucDongVat);
-                    FrdbContext.SaveChanges();
+                    _dbContext.DanhMucGiongCays.Add(newDanhMucGiongCay);
+                    _dbContext.SaveChanges();
                     LoadDataToDGV();
                     MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -65,9 +60,9 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
                 return;
             }
 
-            var selectedDanhMucDongVat = dataGridView1.CurrentRow.DataBoundItem as DanhMucDongVat;
+            var selectedDanhMucGiongCay = dataGridView1.CurrentRow.DataBoundItem as DanhMucGiongCay;
 
-            if (selectedDanhMucDongVat != null)
+            if (selectedDanhMucGiongCay != null)
             {
                 var confirmResult = MessageBox.Show("Bạn có chắc muốn xóa mục này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -75,8 +70,8 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
                 {
                     try
                     {
-                        FrdbContext.DanhMucDongVats.Remove(selectedDanhMucDongVat);
-                        FrdbContext.SaveChanges();
+                        _dbContext.DanhMucGiongCays.Remove(selectedDanhMucGiongCay);
+                        _dbContext.SaveChanges();
                         LoadDataToDGV();
                         MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -96,18 +91,18 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
                 return;
             }
 
-            var selectedDanhMucDongVat = dataGridView1.CurrentRow.DataBoundItem as DanhMucDongVat;
+            var selectedDanhMucGiongCay = dataGridView1.CurrentRow.DataBoundItem as DanhMucGiongCay;
 
-            if (selectedDanhMucDongVat != null)
+            if (selectedDanhMucGiongCay != null)
             {
-                var form = new DanhMucDongVatForm(selectedDanhMucDongVat);
+                var form = new DanhMucGiongCayForm(selectedDanhMucGiongCay);
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        FrdbContext.DanhMucDongVats.Update(selectedDanhMucDongVat);
-                        FrdbContext.SaveChanges();
+                        _dbContext.DanhMucGiongCays.Update(selectedDanhMucGiongCay);
+                        _dbContext.SaveChanges();
                         LoadDataToDGV();
                         MessageBox.Show("Sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -129,9 +124,9 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
             string searchText = textBox1.Text.Trim();
             if (!string.IsNullOrEmpty(searchText))
             {
-                var filteredList = FrdbContext.DanhMucDongVats
+                var filteredList = _dbContext.DanhMucGiongCays
                     .AsEnumerable()
-                    .Where(x => x.TenDanhMucDv.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                    .Where(x => x.TenDanhMuc.Contains(searchText, StringComparison.OrdinalIgnoreCase))
                     .ToList();
                 _bindingSource.DataSource = filteredList;
             }

@@ -20,12 +20,12 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
             textBox1.Text = danhMucGiongCay.TenDanhMuc;
             richTextBox1.Text = danhMucGiongCay.ThongTin;
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(richTextBox1.Text))
             {
@@ -39,7 +39,5 @@ namespace ForestResourceManagement.MixForm.QLGiongCay
                 DialogResult = DialogResult.OK;
             }
         }
-
-
     }
 }

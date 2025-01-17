@@ -72,6 +72,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(310, 23);
             textBox1.TabIndex = 16;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // dataGridView1
             // 
@@ -90,6 +91,7 @@
             SuaDV.TabIndex = 14;
             SuaDV.Text = "SuaDanhMuc";
             SuaDV.UseVisualStyleBackColor = true;
+            SuaDV.Click += SuaDV_Click;
             // 
             // XoaDV
             // 
@@ -99,6 +101,7 @@
             XoaDV.TabIndex = 13;
             XoaDV.Text = "XoaDanhMuc";
             XoaDV.UseVisualStyleBackColor = true;
+            XoaDV.Click += XoaDV_Click;
             // 
             // ThemDV
             // 
@@ -108,6 +111,7 @@
             ThemDV.TabIndex = 12;
             ThemDV.Text = "ThemDanhMuc";
             ThemDV.UseVisualStyleBackColor = true;
+            ThemDV.Click += ThemDV_Click;
             // 
             // QuanLyDanhMucGiongCay
             // 

@@ -39,10 +39,9 @@
             // 
             // ThemDV
             // 
-            ThemDV.Location = new Point(827, 355);
-            ThemDV.Margin = new Padding(4, 5, 4, 5);
+            ThemDV.Location = new Point(610, 208);
             ThemDV.Name = "ThemDV";
-            ThemDV.Size = new Size(107, 38);
+            ThemDV.Size = new Size(75, 23);
             ThemDV.TabIndex = 0;
             ThemDV.Text = "ThemDV";
             ThemDV.UseVisualStyleBackColor = true;
@@ -50,10 +49,9 @@
             // 
             // XoaDV
             // 
-            XoaDV.Location = new Point(827, 450);
-            XoaDV.Margin = new Padding(4, 5, 4, 5);
+            XoaDV.Location = new Point(610, 265);
             XoaDV.Name = "XoaDV";
-            XoaDV.Size = new Size(107, 38);
+            XoaDV.Size = new Size(75, 23);
             XoaDV.TabIndex = 1;
             XoaDV.Text = "XoaDV";
             XoaDV.UseVisualStyleBackColor = true;
@@ -65,20 +63,18 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(86, 235);
-            dataGridView1.Margin = new Padding(4, 5, 4, 5);
+            dataGridView1.Location = new Point(91, 136);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(550, 413);
+            dataGridView1.Size = new Size(385, 248);
             dataGridView1.TabIndex = 2;
             // 
             // SuaDV
             // 
-            SuaDV.Location = new Point(827, 543);
-            SuaDV.Margin = new Padding(4, 5, 4, 5);
+            SuaDV.Location = new Point(610, 321);
             SuaDV.Name = "SuaDV";
-            SuaDV.Size = new Size(107, 38);
+            SuaDV.Size = new Size(75, 23);
             SuaDV.TabIndex = 3;
             SuaDV.Text = "SuaDV";
             SuaDV.UseVisualStyleBackColor = true;
@@ -86,35 +82,32 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(86, 145);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
+            textBox1.Location = new Point(91, 82);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(548, 31);
+            textBox1.Size = new Size(385, 23);
             textBox1.TabIndex = 4;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(86, 93);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(91, 51);
             label1.Name = "label1";
-            label1.Size = new Size(84, 25);
+            label1.Size = new Size(56, 15);
             label1.TabIndex = 5;
             label1.Text = "Tìm kiếm";
             // 
             // QuanLyDongVat
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1143, 750);
+            ClientSize = new Size(800, 450);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(SuaDV);
             Controls.Add(dataGridView1);
             Controls.Add(XoaDV);
             Controls.Add(ThemDV);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "QuanLyDongVat";
             Text = "QuanLyDongVat";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

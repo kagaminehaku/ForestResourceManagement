@@ -482,7 +482,10 @@ namespace ForestResourceManagement
 
         private void button11_Click(object sender, EventArgs e)
         {
-
+            var qlgiongcay = new QuanLyGiongCay(userAccount);
+            qlgiongcay.FormClosed += (s, args) => this.Show();
+            qlgiongcay.Show();
+            this.Hide();
         }
     }
 }
