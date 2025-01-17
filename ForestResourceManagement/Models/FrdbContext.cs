@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class FrdbContext : DbContext
 {
@@ -27,7 +27,11 @@ public partial class FrdbContext : DbContext
 
     public virtual DbSet<DanhMucDongVat> DanhMucDongVats { get; set; }
 
+    public virtual DbSet<DanhMucGiongCay> DanhMucGiongCays { get; set; }
+
     public virtual DbSet<DongVat> DongVats { get; set; }
+
+    public virtual DbSet<GiongCayTrong> GiongCayTrongs { get; set; }
 
     public virtual DbSet<HuyenTable> HuyenTables { get; set; }
 
@@ -128,6 +132,15 @@ public partial class FrdbContext : DbContext
             entity.Property(e => e.ThongTin).HasColumnType("text");
         });
 
+        modelBuilder.Entity<DanhMucGiongCay>(entity =>
+        {
+            entity.ToTable("DanhMucGiongCay");
+
+            entity.Property(e => e.DanhMucGiongCayId).HasColumnName("DanhMucGiongCayID");
+            entity.Property(e => e.TenDanhMuc).HasMaxLength(256);
+            entity.Property(e => e.ThongTin).HasColumnType("text");
+        });
+
         modelBuilder.Entity<DongVat>(entity =>
         {
             entity.ToTable("DongVat");
@@ -141,6 +154,21 @@ public partial class FrdbContext : DbContext
                 .HasForeignKey(d => d.DanhMucDvid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_DongVat_DanhMucDongVat");
+        });
+
+        modelBuilder.Entity<GiongCayTrong>(entity =>
+        {
+            entity.ToTable("GiongCayTrong");
+
+            entity.Property(e => e.GiongCayTrongId).HasColumnName("GiongCayTrongID");
+            entity.Property(e => e.DanhMucGiongCayId).HasColumnName("DanhMucGiongCayID");
+            entity.Property(e => e.TenGiongCayTrong).HasMaxLength(256);
+            entity.Property(e => e.ThongTin).HasColumnType("text");
+
+            entity.HasOne(d => d.DanhMucGiongCay).WithMany(p => p.GiongCayTrongs)
+                .HasForeignKey(d => d.DanhMucGiongCayId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_GiongCayTrong_DanhMucGiongCay");
         });
 
         modelBuilder.Entity<HuyenTable>(entity =>

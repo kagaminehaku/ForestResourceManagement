@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ForestResourceManagement.MixForm.QLGiongCay
 {
-    public partial class DanhMucGiongCay : Form
+    public partial class GiongCayForm : Form
     {
-        public DanhMucGiongCay()
+        public GiongCayForm()
         {
             InitializeComponent();
         }

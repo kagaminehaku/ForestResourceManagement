@@ -8,6 +8,7 @@ using ForestResourceManagement.Controllers;
 using ForestResourceManagement.Models;
 using ForestResourceManagement.MixForm.QLHuyenXa;
 using ForestResourceManagement.MixForm.QLBienDong;
+using ForestResourceManagement.MixForm.QLGiongCay;
 
 namespace ForestResourceManagement
 {
@@ -473,7 +474,10 @@ namespace ForestResourceManagement
 
         private void button10_Click(object sender, EventArgs e)
         {
-
+            var danhmucgiongcay = new QuanLyDanhMucGiongCay(userAccount);
+            danhmucgiongcay.FormClosed += (s, args) => this.Show();
+            danhmucgiongcay.Show();
+            this.Hide();
         }
 
         private void button11_Click(object sender, EventArgs e)

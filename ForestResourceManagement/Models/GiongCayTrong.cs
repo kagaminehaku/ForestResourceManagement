@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ForestResourceManagement.Models;
+namespace ForestResourceManagement;
 
 public partial class GiongCayTrong
 {
@@ -11,5 +11,7 @@ public partial class GiongCayTrong
 
     public string? ThongTin { get; set; }
 
-    public int DanhMucGiongCayTrongId { get; set; }
+    public int DanhMucGiongCayId { get; set; }
+
+    public virtual DanhMucGiongCay DanhMucGiongCay { get; set; } = null!;
 }
