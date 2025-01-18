@@ -65,7 +65,10 @@ namespace ForestResourceManagement
             crpwd = new TextBox();
             button5 = new Button();
             QuanLyGiongCayTab = new TabPage();
-            tabPage5 = new TabPage();
+            button12 = new Button();
+            button11 = new Button();
+            button10 = new Button();
+            QLCheBienGo = new TabPage();
             HuongDanTab = new TabPage();
             groupBox5 = new GroupBox();
             richTextBox4 = new RichTextBox();
@@ -94,8 +97,7 @@ namespace ForestResourceManagement
             logEventDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             richTextBox1 = new RichTextBox();
             logTableBindingSource1 = new BindingSource(components);
-            button10 = new Button();
-            button11 = new Button();
+            button13 = new Button();
             formtabcontrol1.SuspendLayout();
             QuanLyDonViTab.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -121,7 +123,7 @@ namespace ForestResourceManagement
             formtabcontrol1.Controls.Add(QuanLyDongVatTab);
             formtabcontrol1.Controls.Add(TaiKhoanTab);
             formtabcontrol1.Controls.Add(QuanLyGiongCayTab);
-            formtabcontrol1.Controls.Add(tabPage5);
+            formtabcontrol1.Controls.Add(QLCheBienGo);
             formtabcontrol1.Controls.Add(HuongDanTab);
             formtabcontrol1.Controls.Add(UserControlTab);
             formtabcontrol1.Controls.Add(SystemLogTab);
@@ -308,6 +310,7 @@ namespace ForestResourceManagement
             // 
             // QuanLyDongVatTab
             // 
+            QuanLyDongVatTab.Controls.Add(button13);
             QuanLyDongVatTab.Controls.Add(button9);
             QuanLyDongVatTab.Controls.Add(button8);
             QuanLyDongVatTab.Controls.Add(button4);
@@ -323,7 +326,7 @@ namespace ForestResourceManagement
             // 
             // button9
             // 
-            button9.Location = new Point(330, 251);
+            button9.Location = new Point(321, 168);
             button9.Name = "button9";
             button9.Size = new Size(189, 53);
             button9.TabIndex = 3;
@@ -333,7 +336,7 @@ namespace ForestResourceManagement
             // 
             // button8
             // 
-            button8.Location = new Point(81, 251);
+            button8.Location = new Point(72, 168);
             button8.Name = "button8";
             button8.Size = new Size(189, 53);
             button8.TabIndex = 2;
@@ -343,7 +346,7 @@ namespace ForestResourceManagement
             // 
             // button4
             // 
-            button4.Location = new Point(81, 152);
+            button4.Location = new Point(72, 69);
             button4.Name = "button4";
             button4.Size = new Size(189, 52);
             button4.TabIndex = 1;
@@ -353,11 +356,11 @@ namespace ForestResourceManagement
             // 
             // QuanLyDanhMucDongVat
             // 
-            QuanLyDanhMucDongVat.Location = new Point(330, 152);
+            QuanLyDanhMucDongVat.Location = new Point(321, 69);
             QuanLyDanhMucDongVat.Name = "QuanLyDanhMucDongVat";
             QuanLyDanhMucDongVat.Size = new Size(189, 60);
             QuanLyDanhMucDongVat.TabIndex = 0;
-            QuanLyDanhMucDongVat.Text = "Quản Lý Danh Mục";
+            QuanLyDanhMucDongVat.Text = "Quản Lý Danh Mục Động Vật";
             QuanLyDanhMucDongVat.UseVisualStyleBackColor = true;
             QuanLyDanhMucDongVat.Click += QuanLyDanhMucDongVat_Click;
             // 
@@ -473,6 +476,7 @@ namespace ForestResourceManagement
             // 
             // QuanLyGiongCayTab
             // 
+            QuanLyGiongCayTab.Controls.Add(button12);
             QuanLyGiongCayTab.Controls.Add(button11);
             QuanLyGiongCayTab.Controls.Add(button10);
             QuanLyGiongCayTab.Location = new Point(4, 44);
@@ -484,26 +488,56 @@ namespace ForestResourceManagement
             QuanLyGiongCayTab.Text = "Quản Lý Giống Cây";
             QuanLyGiongCayTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // button12
             // 
-            tabPage5.Location = new Point(4, 24);
-            tabPage5.Margin = new Padding(2);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(2);
-            tabPage5.Size = new Size(584, 466);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "tabPage5";
-            tabPage5.UseVisualStyleBackColor = true;
+            button12.Location = new Point(214, 237);
+            button12.Name = "button12";
+            button12.Size = new Size(186, 89);
+            button12.TabIndex = 2;
+            button12.Text = "Quản Lý Cơ Sở Sản Xuất Giống Cây";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(329, 127);
+            button11.Name = "button11";
+            button11.Size = new Size(189, 65);
+            button11.TabIndex = 1;
+            button11.Text = "Quản Lý Giống Cây";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(94, 127);
+            button10.Name = "button10";
+            button10.Size = new Size(201, 65);
+            button10.TabIndex = 0;
+            button10.Text = "Quản Lý Danh Mục Giống Cây";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
+            // 
+            // QLCheBienGo
+            // 
+            QLCheBienGo.Location = new Point(4, 44);
+            QLCheBienGo.Margin = new Padding(2);
+            QLCheBienGo.Name = "QLCheBienGo";
+            QLCheBienGo.Padding = new Padding(2);
+            QLCheBienGo.Size = new Size(584, 446);
+            QLCheBienGo.TabIndex = 4;
+            QLCheBienGo.Text = "Quản Lý Chế Biến Gỗ";
+            QLCheBienGo.UseVisualStyleBackColor = true;
             // 
             // HuongDanTab
             // 
             HuongDanTab.Controls.Add(groupBox5);
             HuongDanTab.Controls.Add(groupBox3);
-            HuongDanTab.Location = new Point(4, 24);
+            HuongDanTab.Location = new Point(4, 44);
             HuongDanTab.Margin = new Padding(2);
             HuongDanTab.Name = "HuongDanTab";
             HuongDanTab.Padding = new Padding(2);
-            HuongDanTab.Size = new Size(584, 466);
+            HuongDanTab.Size = new Size(584, 446);
             HuongDanTab.TabIndex = 5;
             HuongDanTab.Text = "Hướng Dẫn";
             HuongDanTab.UseVisualStyleBackColor = true;
@@ -776,25 +810,15 @@ namespace ForestResourceManagement
             // 
             logTableBindingSource1.DataSource = typeof(LogTable);
             // 
-            // button10
+            // button13
             // 
-            button10.Location = new Point(94, 127);
-            button10.Name = "button10";
-            button10.Size = new Size(201, 65);
-            button10.TabIndex = 0;
-            button10.Text = "Quản Lý Danh Mục Giống Cây";
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += button10_Click;
-            // 
-            // button11
-            // 
-            button11.Location = new Point(329, 127);
-            button11.Name = "button11";
-            button11.Size = new Size(189, 65);
-            button11.TabIndex = 1;
-            button11.Text = "Quản Lý Giống Cây";
-            button11.UseVisualStyleBackColor = true;
-            button11.Click += button11_Click;
+            button13.Location = new Point(321, 280);
+            button13.Name = "button13";
+            button13.Size = new Size(189, 57);
+            button13.TabIndex = 4;
+            button13.Text = "Quản Lý Danh Mục Lưu Trữ";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // MainUI
             // 
@@ -838,7 +862,7 @@ namespace ForestResourceManagement
         private TabPage QuanLyDongVatTab;
         private TabPage TaiKhoanTab;
         private TabPage QuanLyGiongCayTab;
-        private TabPage tabPage5;
+        private TabPage QLCheBienGo;
         private TabPage HuongDanTab;
         private TabPage UserControlTab;
         private TabPage SystemLogTab;
@@ -897,5 +921,7 @@ namespace ForestResourceManagement
         private Button button8;
         private Button button11;
         private Button button10;
+        private Button button12;
+        private Button button13;
     }
 }

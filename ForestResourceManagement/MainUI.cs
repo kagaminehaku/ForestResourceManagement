@@ -9,6 +9,7 @@ using ForestResourceManagement.Models;
 using ForestResourceManagement.MixForm.QLHuyenXa;
 using ForestResourceManagement.MixForm.QLBienDong;
 using ForestResourceManagement.MixForm.QLGiongCay;
+using ForestResourceManagement.MixForm.QLCoSoLuuTruDV;
 
 namespace ForestResourceManagement
 {
@@ -485,6 +486,19 @@ namespace ForestResourceManagement
             var qlgiongcay = new QuanLyGiongCay(userAccount);
             qlgiongcay.FormClosed += (s, args) => this.Show();
             qlgiongcay.Show();
+            this.Hide();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            var qlluutrudv = new QLDanhMucCoSoLuuTruDV(userAccount);
+            qlluutrudv.FormClosed += (s, args) => this.Show();
+            qlluutrudv.Show();
             this.Hide();
         }
     }
